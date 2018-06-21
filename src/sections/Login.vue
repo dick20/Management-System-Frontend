@@ -67,15 +67,16 @@ export default {
       }
 
       auth.login(this, {
-        username: username,
+        phone: username,
         password: password
-      }).then((data) => {
-        if (data.status) {
+      }).then((res) => {
+        console.log(res)
+        if (res.status === 200) {
           router.go('/dashboard')
         } else {
-          self.showError(data.msg)
+          self.showError(res.msg)
         }
-      }).catch((data) => {
+      }).catch((res) => {
         this.showError('服务器发生错误！')
       })
     }
