@@ -10,7 +10,6 @@
           .dish-description {{dish.description}}
           .dish-price ￥ {{dish.price}}
           .dish-image(style="background-image: url({{dish.image_url}})")
-
 </template>
 
 <script>

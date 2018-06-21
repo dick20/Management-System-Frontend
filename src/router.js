@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import Login from './sections/Login'
 
 import Dashboard from './sections/Dashboard'
-import MachineDetail from './sections/MachineDetail'
+import About from './sections/About'
 
 import Menu from './sections/Menu'
 
@@ -25,9 +25,9 @@ router.map({
     component: Menu,
     auth: true
   },
-  'machine/:machineId': {
-    name: 'MachineDetail',
-    component: MachineDetail,
+  'about': {
+    name: 'About',
+    component: About,
     auth: true
   },
   'login': {
