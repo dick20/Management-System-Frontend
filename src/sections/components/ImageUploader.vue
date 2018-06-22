@@ -9,7 +9,7 @@
       <div v-for="(data, index) in imageDataList" class="img-uploader-preview">
 
         <div class="preview-img">
-          <img :src="data"/>
+          <img :src="data.0">
         </div>
         <!--信息窗-->
         <div class="img-uploader-mask" v-if="hasImages">
@@ -162,6 +162,7 @@
 //            _this.imageDataList.push(e.target.result)
             resizeImage(e.target.result, 150, 150, function (result) {
               _this.imageDataList.push(result)
+              console.log(_this.imageDataList)
             })
           }
           reader.readAsDataURL(file)

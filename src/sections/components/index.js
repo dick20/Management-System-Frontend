@@ -7,3 +7,10 @@ export { default as FloatingWindow } from './FloatingWindow.vue'
 export { default as Item } from './Item.vue'
 export { default as AddItemPopup } from './AddItemPopup.vue'
 
+export const CATEGORIES = {
+  RECOMMENDED: "Chef's recommendation",
+  SPICY: 'Spicy',
+  SEASONAL: 'Seasonal',
+  EGG: 'Contains egg',
+  VEG: 'Vegetarian'
+}

@@ -47,7 +47,7 @@ export default {
   },
   data: function () {
     return {
-      itemPopupVisible: false,
+      itemPopupVisible: true,
       categories: []
     }
   },

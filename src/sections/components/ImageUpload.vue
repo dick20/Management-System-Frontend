@@ -1,38 +1,34 @@
 <template>
   <div class="hello">
-    <button @click="limitClick(1)">点击设置上传数量：2</button>
-    <button @click="limitClick(0)">点击取消上传数量</button>
     <div class="upload">
       <div class="upload_warp">
         <div class="upload_warp_left" @click="fileClick">
           <img src="./upload.png">
         </div>
-        <div class="upload_warp_right" @drop="drop($event)" @dragenter="dragenter($event)" @dragover="dragover($event)">
-          或者将文件拖到此处
+        <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
+        <div class="upload_warp_img" v-show="imgList.length!=0">
+          <div class="upload_warp_img_div" v-for="(item, index) in imgList">
+            <div class="upload_warp_img_div_top">
+              <div class="upload_warp_img_div_text">
+                {{imgList[0].file.name}}
+              </div>
+              <img src="./del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
+            </div>
+            <img :src="imgList[0].file.src">
+          </div>
         </div>
       </div>
       <div class="upload_warp_text">
         选中{{imgList.length}}张文件，共{{bytesToSize(this.size)}}
       </div>
-      <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
-      <div class="upload_warp_img" v-show="imgList.length!=0">
-        <div class="upload_warp_img_div" v-for="(item,index) of imgList">
-          <div class="upload_warp_img_div_top">
-            <div class="upload_warp_img_div_text">
-              {{item.file.name}}
-            </div>
-            <img src="./del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
-          </div>
-          <img :src="item.file.src">
-        </div>
-      </div>
+
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'hello',
+    name: 'image-upload',
     data () {
       return {
         imgList: [],
@@ -40,15 +36,6 @@
       }
     },
     methods: {
-      // 设置
-      limitClick (state) {
-        this.imgList = []
-        if (state) {
-          this.limit = 2
-        } else {
-          this.limit = undefined
-        }
-      },
       fileClick () {
         document.getElementById('upload_file').click()
       },
@@ -59,6 +46,7 @@
       },
       fileList (fileList) {
         let files = fileList.files
+//        console.log(files)
         for (let i = 0; i < files.length; i++) {
           // 判断是否为文件夹
           if (files[i].type !== '') {
@@ -93,6 +81,7 @@
         })
       },
       fileAdd (file) {
+        console.log(file)
         if (this.limit !== undefined) this.limit--
         if (this.limit !== undefined && this.limit < 0) return
         // 总大小
@@ -105,7 +94,8 @@
           })
         } else {
           let reader = new window.FileReader()
-          let image = new window.Image()
+//          let image = new window.Image()
+          let image = document.createElement('img')
           let _this = this
           reader.readAsDataURL(file)
           reader.onload = function () {
@@ -125,7 +115,7 @@
         }
       },
       fileDel (index) {
-        this.size = this.size - this.imgList[index].file.size // 总大小
+        this.size = this.size - this.imgList[0].file.size // 总大小
         this.imgList.splice(index, 1)
         if (this.limit !== undefined) this.limit = this.imgList.length
       },
@@ -135,19 +125,6 @@
         let sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
         let i = Math.floor(Math.log(bytes) / Math.log(k))
         return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i]
-      },
-      dragenter (el) {
-        el.stopPropagation()
-        el.preventDefault()
-      },
-      dragover (el) {
-        el.stopPropagation()
-        el.preventDefault()
-      },
-      drop (el) {
-        el.stopPropagation()
-        el.preventDefault()
-        this.fileList(el.dataTransfer)
       }
     }
   }
@@ -247,13 +224,14 @@
   .upload {
     border: 1px solid #ccc;
     background-color: #fff;
-    width: 650px;
+    width: 400px;
     box-shadow: 0px 1px 0px #ccc;
     border-radius: 4px;
   }
 
   .hello {
-    width: 650px;
+    width: 250px;
+    /*width: 650px;*/
     /*margin-left: 34%;*/
   }
 </style>

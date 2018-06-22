@@ -11,7 +11,13 @@
       </div>
       <div class="control-container">
         <label for="category">类别</label>
-        <input type="text" class="control full" v-model="category" />
+        <div class="tag-container">
+          <div
+            v-for="(title, tag) in tags" :key="tag"
+            :class="{ tag: true, selected: selectedTags[tag] }"
+            @click='toggleTag(tag)'>
+            {{ tag }}
+          </div>
       </div>
       <div class="control-container">
         <label for="description">描述</label>
@@ -24,7 +30,8 @@
       <!--<div class="hello">-->
         <!--<image-uploader @onChange="imgChange" ></image-uploader>-->
       <!--</div>-->
-      <div class="hello">
+      <div class="control-container">
+        <label>上传图片</label>
         <image-upload @onChange="imgChange" ></image-upload>
       </div>
     </div>
@@ -40,7 +47,9 @@
 <script>
 import { buildMenuItem } from '../../utils/order'
 // import { Button, ImageUploader } from '.'
-import { Button, ImageUploader, ImageUpload } from '.'
+import { Button, ImageUploader, ImageUpload, CATEGORIES } from '.'
+import Vue from 'vue'
+import mapValues from 'lodash/mapValues'
 
 export default {
   components: {
@@ -51,21 +60,24 @@ export default {
   data: function () {
     return {
       name: '',
-      category: '',
       description: '',
       price: null,
       image: '',
-      maxSize: 3072
+      tags: CATEGORIES,
+      selectedTags: mapValues(CATEGORIES, () => false)
     }
   },
   methods: {
+    toggleTag (tag) {
+      Vue.set(this.selectedTags, tag, !this.selectedTags[tag])
+    },
     addItem: function () {
       const item = buildMenuItem({
         name: this.name,
-        category: this.category,
         description: this.description,
         price: this.price,
-        image: ''
+        image: '',
+        category: { ...this.selectedTags }
       })
       this.addMenuItem(item)
       this.dismiss()
@@ -171,8 +183,5 @@ export default {
   flex-direction: row-reverse;
   padding: 8px;
 }
-.hello {
-  width: 650px;
-  margin-left: 34%;
-}
+
 </style>
