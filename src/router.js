@@ -6,7 +6,7 @@ import Login from './sections/Login'
 import Dashboard from './sections/Dashboard'
 import MachineDetail from './sections/MachineDetail'
 
-import Menu from './sections/Menu'
+import Menu from './sections/menu/Menu'
 
 Vue.use(Router)
 

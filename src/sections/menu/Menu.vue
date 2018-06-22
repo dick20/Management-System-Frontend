@@ -38,9 +38,8 @@
 </template>
 
 <script>
-import api from '../service/api.js'
+import api from '../../service/api.js'
 import { Item, AddItemPopup, Button, FloatingWindow } from './components'
-import { bus } from './bus.js'
 
 export default {
   name: 'Menu',
@@ -64,10 +63,11 @@ export default {
   },
   ready: function () {
     api.getMenu(this).then((res) => {
-      console.log(res.data[0].name)
+//      console.log(res.data[0].name)
       if (res.status === 200) {
         this.$set('categories', res.data)
       }
+      console.log(this.categories)
     })
   }
 

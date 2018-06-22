@@ -3,7 +3,7 @@
     <div class="upload">
       <div class="upload_warp">
         <div class="upload_warp_left" @click="fileClick">
-          <img src="../assets/upload.png">
+          <img src="../../assets/upload.png">
         </div>
         <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
         <div class="upload_warp_img" v-show="imgList.length!=0">
@@ -12,7 +12,7 @@
               <div class="upload_warp_img_div_text">
                 {{item.file.name}}
               </div>
-              <img src="../assets/del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
+              <img src="../../assets/del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
             </div>
             <img :src="item.file.src">
           </div>

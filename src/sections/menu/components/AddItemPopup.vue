@@ -27,9 +27,7 @@
         <label for="price">价格</label>
         <input type="number" class="control full" v-model.number="price" />
       </div>
-      <!--<div class="hello">-->
-        <!--<image-uploader @onChange="imgChange" ></image-uploader>-->
-      <!--</div>-->
+
       <div class="control-container">
         <label>上传图片</label>
         <image-upload @onChange="imgChange" ></image-upload>
@@ -46,10 +44,10 @@
 </template>
 
 <script>
-import { buildMenuItem } from '../../utils/order'
-// import { Button, ImageUploader } from '.'
+import { buildMenuItem } from '../../../utils/order'
 import { Button, ImageUploader, ImageUpload, CATEGORIES } from '.'
 import Vue from 'vue'
+import { mapMutations } from 'vuex'
 import mapValues from 'lodash/mapValues'
 
 export default {
@@ -86,11 +84,9 @@ export default {
     dismiss: function () {
       this.$emit('itempopupvisible')
     },
-    imgChange (files) {
-      if (files) {
-        console.log(files)
-      }
-    }
+    ...mapMutations([
+      'addMenuItem'
+    ])
   }
 }
 </script>
