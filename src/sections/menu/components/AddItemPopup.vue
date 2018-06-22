@@ -7,7 +7,7 @@
     <div class="form-container">
       <div class="control-container">
         <label for="name">菜名</label>
-        <input type="text" class="control full" v-model="title" />
+        <input type="text" class="control full" v-model="name" />
       </div>
       <div class="control-container">
         <label for="category">类别</label>
@@ -30,7 +30,7 @@
 
       <div class="control-container">
         <label>上传图片</label>
-        <image-upload @onChange="imgChange" ></image-upload>
+        <image-upload></image-upload>
       </div>
     </div>
 
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import { buildMenuItem } from '../../../utils/order'
 import { Button, ImageUploader, ImageUpload, CATEGORIES } from '.'
 import Vue from 'vue'
 import { mapMutations } from 'vuex'
@@ -71,13 +70,13 @@ export default {
       Vue.set(this.selectedTags, tag, !this.selectedTags[tag])
     },
     addItem: function () {
-      const item = buildMenuItem({
+      const item = {
         name: this.name,
         description: this.description,
         price: this.price,
         image: '',
         category: { ...this.selectedTags }
-      })
+      }
       this.addMenuItem(item)
       this.dismiss()
     },

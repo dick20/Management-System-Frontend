@@ -4,12 +4,12 @@
       <app-button primary={true} @click.native="itemPopupVisible = true">新增菜品</app-button>
     </div>
 
-    <div class="category-container" v-for="(items, category) in menu.categories" :key="category">
-      <span class="category-header">{{ category }}</span>
-      <div class="item-container">
-        <item v-for="item in items" :key="item.id" :item="item"></item>
-      </div>
-    </div>
+    <!--<div class="category-container" v-for="(items, category) in menu.categories" :key="category">-->
+      <!--<span class="category-header">{{ category }}</span>-->
+      <!--<div class="item-container">-->
+        <!--<item v-for="item in items" :key="item.id" :item="item"></item>-->
+      <!--</div>-->
+    <!--</div>-->
 
     <transition name="slide-fade">
       <floating-window v-if="itemPopupVisible">

@@ -10,23 +10,25 @@ export default new Vuex.Store({
     categories: []
   },
   mutations: {
-    setData (state, payload) {
-      state.categories = payload
-    },
+    // setData (state, payload) {
+    //   state.categories = payload
+    // },
     addMenuItem (state, payload) {
+      console.log(state)
+      state.categories.push(payload)
       // Vue.set(state.menu.items, payload.id, payload);
     }
-  },
-  actions: {
-    async fetchData ({ commit }) {
-      const [menu] = await Promise.all([
-        getMenu()
-      ])
-
-      commit({
-        type: 'setData',
-        menu
-      })
-    }
   }
+  // actions: {
+  //   async fetchData ({ commit }) {
+  //     const [menu] = await Promise.all([
+  //       getMenu()
+  //     ])
+  //
+  //     commit({
+  //       type: 'setData',
+  //       menu
+  //     })
+  //   }
+  // }
 })
