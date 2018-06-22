@@ -3,23 +3,23 @@
     <div class="upload">
       <div class="upload_warp">
         <div class="upload_warp_left" @click="fileClick">
-          <img src="./upload.png">
+          <img src="../assets/upload.png">
         </div>
         <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
         <div class="upload_warp_img" v-show="imgList.length!=0">
-          <div class="upload_warp_img_div" v-for="(item, index) in imgList">
+          <div class="upload_warp_img_div" v-for="(index, item) in imgList">
             <div class="upload_warp_img_div_top">
               <div class="upload_warp_img_div_text">
-                {{imgList[0].file.name}}
+                {{item.file.name}}
               </div>
-              <img src="./del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
+              <img src="../assets/del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
             </div>
-            <img :src="imgList[0].file.src">
+            <img :src="item.file.src">
           </div>
         </div>
       </div>
       <div class="upload_warp_text">
-        选中{{imgList.length}}张文件，共{{bytesToSize(this.size)}}
+        {{bytesToSize(this.size)}}
       </div>
 
     </div>
@@ -46,7 +46,6 @@
       },
       fileList (fileList) {
         let files = fileList.files
-//        console.log(files)
         for (let i = 0; i < files.length; i++) {
           // 判断是否为文件夹
           if (files[i].type !== '') {
@@ -81,7 +80,6 @@
         })
       },
       fileAdd (file) {
-        console.log(file)
         if (this.limit !== undefined) this.limit--
         if (this.limit !== undefined && this.limit < 0) return
         // 总大小
@@ -94,7 +92,6 @@
           })
         } else {
           let reader = new window.FileReader()
-//          let image = new window.Image()
           let image = document.createElement('img')
           let _this = this
           reader.readAsDataURL(file)
@@ -108,14 +105,13 @@
               _this.imgList.push({
                 file
               })
-              console.log(_this.imgList)
             }
             image.src = file.src
           }
         }
       },
       fileDel (index) {
-        this.size = this.size - this.imgList[0].file.size // 总大小
+        this.size = this.size - this.imgList[index].file.size  // 总大小
         this.imgList.splice(index, 1)
         if (this.limit !== undefined) this.limit = this.imgList.length
       },

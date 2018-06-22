@@ -28,7 +28,7 @@
             <div class = "dish-name">{{dish.name}}</div>
             <div class="dish-description">{{dish.description}}</div>
             <div class="dish-price">￥ {{dish.price}}</div>
-            <div class="dish-image" style="background-image: url({{dish.image_url}})"></div>
+            <div class="dish-image" style=" background-image: url({{dish.image_url}})"></div>
           </div>
         </div>
       </div>
