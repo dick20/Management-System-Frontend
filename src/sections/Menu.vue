@@ -1,30 +1,62 @@
-<template lang="jade">
-  .management-menu
-    .page-header
-      h1 Menu
-    .dishes-list
-      .category(v-for="category in categories")
-        h2 {{category.name}}
-        .dish(v-for="dish in category.foods")
-          .dish-name {{dish.name}}
-          .dish-description {{dish.description}}
-          .dish-price ￥ {{dish.price}}
-          .dish-image(style="background-image: url({{dish.image_url}})")
+<template >
+  <main class="menu">
+    <div class="menu-header">
+      <app-button primary={true} @click.native="itemPopupVisible = true">Add Item</app-button>
+    </div>
+
+    <div class="category-container" v-for="(items, category) in menu.categories" :key="category">
+      <span class="category-header">{{ category }}</span>
+      <div class="item-container">
+        <item v-for="item in items" :key="item.id" :item="item"></item>
+      </div>
+    </div>
+
+    <transition name="slide-fade">
+      <floating-window v-if="itemPopupVisible">
+        <add-item-popup @itempopupvisible="itempopupvisible()"></add-item-popup>
+      </floating-window>
+    </transition>
+  </main>
+
+  <!--.management-menu-->
+    <!--.page-header-->
+      <!--h1 Menu-->
+    <!--.dishes-list-->
+      <!--.category(v-for="category in categories")-->
+        <!--h2 {{category.name}}-->
+        <!--.dish(v-for="dish in category.foods")-->
+          <!--.dish-name {{dish.name}}-->
+          <!--.dish-description {{dish.description}}-->
+          <!--.dish-price ￥ {{dish.price}}-->
+          <!--.dish-image(style="background-image: url({{dish.image_url}})")-->
 
 </template>
 
 <script>
 import api from '../service/api.js'
+import { Item, AddItemPopup, Button, FloatingWindow } from './components'
+import { bus } from './bus.js'
 
 export default {
   name: 'Menu',
-
+  components: {
+    Item,
+    AppButton: Button,
+    FloatingWindow,
+    AddItemPopup
+  },
   data: function () {
     return {
+      itemPopupVisible: false,
       categories: []
     }
   },
-
+  methods: {
+    itempopupvisible: function () {
+      this.itemPopupVisible = false
+      console.log(this.itemPopupVisible)
+    }
+  },
   ready: function () {
     api.getMenu(this).then((res) => {
       console.log(res.data[0].name)
@@ -38,6 +70,27 @@ export default {
 </script>
 
 <style scoped>
+
+.menu-header {
+  padding: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.category-container {
+  padding: 18px 0;
+}
+
+.category-header {
+  margin-left: 8px;
+  text-transform: uppercase;
+  color: #FF5722;
+}
+
+.item-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 .category {
   width: 100%;
   display: inline-block;
@@ -68,4 +121,5 @@ export default {
   height: 100px;
   background-size: cover;
 }
+
 </style>
