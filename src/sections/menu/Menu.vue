@@ -13,7 +13,7 @@
 
     <transition name="slide-fade">
       <floating-window v-if="itemPopupVisible">
-        <add-item-popup @itempopupvisible="itempopupvisible()"></add-item-popup>
+        <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories"></add-item-popup>
       </floating-window>
     </transition>
   </main>
@@ -24,11 +24,11 @@
       <div class = "dish-list">
         <div class = "category" v-for="category in categories">
           <h2>{{category.name}}</h2>
-          <div class = "dish" v-for="dish in category.foods">
+          <div class = "dish" v-for="dish in category.dish">
             <div class = "dish-name">{{dish.name}}</div>
-            <div class="dish-description">{{dish.description}}</div>
+            <div class="dish-description">{{dish.description.comment}}</div>
             <div class="dish-price">￥ {{dish.price}}</div>
-            <div class="dish-image" style=" background-image: url({{dish.image_url}})"></div>
+            <div class="dish-image" style=" background-image: url({{dish.imageURL}})"></div>
           </div>
         </div>
       </div>
@@ -58,7 +58,6 @@ export default {
   methods: {
     itempopupvisible: function () {
       this.itemPopupVisible = false
-      console.log(this.itemPopupVisible)
     }
   },
   ready: function () {

@@ -48,12 +48,19 @@ import { Button, ImageUploader, ImageUpload, CATEGORIES } from '.'
 import Vue from 'vue'
 import { mapMutations } from 'vuex'
 import mapValues from 'lodash/mapValues'
+import api from '../../../service/api.js'
 
 export default {
   components: {
     AppButton: Button,
     ImageUploader,
     ImageUpload
+  },
+  props: {
+    categories: {
+      type: Array,
+      required: true
+    }
   },
   data: function () {
     return {
@@ -62,30 +69,46 @@ export default {
       price: null,
       image: '',
       tags: CATEGORIES,
-      selectedTags: mapValues(CATEGORIES, () => false)
+      selectedTags: mapValues(CATEGORIES, () => false),
+      item: {}
     }
   },
   methods: {
     toggleTag (tag) {
       Vue.set(this.selectedTags, tag, !this.selectedTags[tag])
+      this.item.category = tag
     },
     addItem: function () {
-      const item = {
-        name: this.name,
-        description: this.description,
-        price: this.price,
-        image: '',
-        category: { ...this.selectedTags }
-      }
-      this.addMenuItem(item)
+      this.item.name = this.name
+      this.item.description = this.description
+      this.item.price = this.price
+      this.item.image = ''
+      this.addMenuItem(this.item)
       this.dismiss()
     },
     dismiss: function () {
       this.$emit('itempopupvisible')
     },
-    ...mapMutations([
-      'addMenuItem'
-    ])
+    addMenuItem: function (item) {
+      let json = {}
+      this.categories.filter(function (type) {
+        if (type.name === item.category) {
+          json.CategoryID = type.CategoryID
+        }
+      })
+      json.description = []
+      json.description.comment = item.description
+      json.description.hot = 0
+      json.description.monthlySales = 0
+      json.dishID = 0
+      json.name = item.name
+      json.price = item.price
+//      console.log(json)
+//      api.postMenu(this, json)
+    }
+//    ...mapMutations([
+//      'addMenuItem'
+//    ])
   }
 }
 </script>

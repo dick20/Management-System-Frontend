@@ -8,5 +8,10 @@ export const CATEGORIES = {
   DISCOUNT: '优惠',
   WORKINGMEAL: '充电工作餐',
   STAPLEFOOD: '主食',
-  SETMEAL: '超值套餐'
+  SETMEAL: '超值套餐',
+  SNACK: '小食',
+  DRINK: '饮品',
+  DESSERT: '甜品',
+  HAPPYMEAL: '开心乐园餐',
+  BREAKFAST: '早餐'
 }

@@ -15,7 +15,7 @@ export default new Vuex.Store({
     // },
     addMenuItem (state, payload) {
       console.log(state)
-      state.categories.push(payload)
+      // state.categories.push(payload)
       // Vue.set(state.menu.items, payload.id, payload);
     }
   }
