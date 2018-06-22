@@ -205,6 +205,7 @@
 
   .upload_warp_left img {
     margin-top: 32px;
+    margin-left: 40px;
   }
 
   .upload_warp_left {
@@ -231,7 +232,5 @@
 
   .hello {
     width: 250px;
-    /*width: 650px;*/
-    /*margin-left: 34%;*/
   }
 </style>

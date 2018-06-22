@@ -105,7 +105,7 @@ export default {
 .header {
   height: 48px;
   padding: 0 12px;
-  background: #F4511E;
+  background: #009dff;
   color: #fff;
   margin-bottom: 24px;
 }
@@ -165,7 +165,7 @@ export default {
   border: 1px solid #ededed;
   border-radius: 4px;
   padding: 4px 8px;
-  margin-right: 4px;
+  margin-right: 8px;
   margin-bottom: 4px;
   color: #9E9E9E;
   cursor: pointer;
@@ -175,8 +175,8 @@ export default {
 .tag.selected {
   border: none;
   color: #fff;
-  background: #F4511E;
-  border: 1px solid #F4511E;
+  background: #009dff;
+  border: 1px solid #009dff;
 }
 
 .button-container {

@@ -13,17 +13,18 @@ export default {
 <style scoped>
 .btn {
   text-transform: uppercase;
+  margin-right:12px;
   padding: 6px 12px;
   border: none;
   outline: none;
   background: none;
-  color: #2e2e2e;
+  color: #009dff;
 }
 
 .btn.primary {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   color: #fff;
-  background: #FF5722;
+  background: #009dff;
 }
 
 .btn.disabled {

@@ -1,7 +1,7 @@
-<template >
+<template>
   <main class="menu">
     <div class="menu-header">
-      <app-button primary={true} @click.native="itemPopupVisible = true">Add Item</app-button>
+      <app-button primary={true} @click.native="itemPopupVisible = true">新增菜品</app-button>
     </div>
 
     <div class="category-container" v-for="(items, category) in menu.categories" :key="category">
@@ -18,17 +18,22 @@
     </transition>
   </main>
 
-  <!--.management-menu-->
-    <!--.page-header-->
-      <!--h1 Menu-->
-    <!--.dishes-list-->
-      <!--.category(v-for="category in categories")-->
-        <!--h2 {{category.name}}-->
-        <!--.dish(v-for="dish in category.foods")-->
-          <!--.dish-name {{dish.name}}-->
-          <!--.dish-description {{dish.description}}-->
-          <!--.dish-price ￥ {{dish.price}}-->
-          <!--.dish-image(style="background-image: url({{dish.image_url}})")-->
+  <div class="management-menu">
+    <div class="page-header">
+      <h1>menu</h1>
+      <div class = "dish-list">
+        <div class = "category" v-for="category in categories">
+          <h2>{{category.name}}</h2>
+          <div class = "dish" v-for="dish in category.foods">
+            <div class = "dish-name">{{dish.name}}</div>
+            <div class="dish-description">{{dish.description}}</div>
+            <div class="dish-price">￥ {{dish.price}}</div>
+            <div class="dish-image" style="background-image: url({{dish.image_url}})"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </template>
 
@@ -47,7 +52,7 @@ export default {
   },
   data: function () {
     return {
-      itemPopupVisible: true,
+      itemPopupVisible: false,
       categories: []
     }
   },
