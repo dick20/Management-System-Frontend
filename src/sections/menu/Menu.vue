@@ -4,13 +4,6 @@
       <app-button primary={true} @click.native="itemPopupVisible = true">新增菜品</app-button>
     </div>
 
-    <!--<div class="category-container" v-for="(items, category) in menu.categories" :key="category">-->
-      <!--<span class="category-header">{{ category }}</span>-->
-      <!--<div class="item-container">-->
-        <!--<item v-for="item in items" :key="item.id" :item="item"></item>-->
-      <!--</div>-->
-    <!--</div>-->
-
     <transition name="slide-fade">
       <floating-window v-if="itemPopupVisible">
         <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories"></add-item-popup>
@@ -29,6 +22,8 @@
             <div class="dish-description">{{dish.description.comment}}</div>
             <div class="dish-price">￥ {{dish.price}}</div>
             <div class="dish-image" style=" background-image: url({{dish.imageURL}})"></div>
+            <i class="iconfont icon-delete edit-icon"></i>
+            <i class="iconfont icon-edit edit-icon"></i>
           </div>
         </div>
       </div>
@@ -125,5 +120,16 @@ export default {
   height: 100px;
   background-size: cover;
 }
-
+.edit-icon {
+  /*visibility: hidden;*/
+  float: right;
+  margin-top:10px;
+  margin-right:10px;
+  /*width: 90px;*/
+  /*height: 90px;*/
+  color: #009dff;
+}
+.dish:hover>.edit-icon {
+  visibility: visible;
+}
 </style>
