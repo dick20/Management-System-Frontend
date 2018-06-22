@@ -8,9 +8,9 @@ export { default as Item } from './Item.vue'
 export { default as AddItemPopup } from './AddItemPopup.vue'
 
 export const CATEGORIES = {
-  RECOMMENDED: "Chef's recommendation",
-  SPICY: 'Spicy',
-  SEASONAL: 'Seasonal',
-  EGG: 'Contains egg',
-  VEG: 'Vegetarian'
+  RECOMMENDED: '热销',
+  DISCOUNT: '优惠',
+  WORKINGMEAL: '充电工作餐',
+  STAPLEFOOD: '主食',
+  SETMEAL: '超值套餐'
 }

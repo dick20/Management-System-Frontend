@@ -37,10 +37,11 @@
     </div>
 
     <div class="button-container">
-      <app-button primary={true} @click.native="addItem">Add</app-button>
-      <app-button @click.native="dismiss">Discard</app-button>
+      <app-button primary={true} @click.native="addItem">添加</app-button>
+      <app-button primary={true} @click.native="dismiss">关闭</app-button>
     </div>
 
+  </div>
   </div>
 </template>
 
