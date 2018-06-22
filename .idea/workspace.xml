@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f2795a6-aedb-4166-9b44-ad3b78fe62f9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.eslintrc.js" afterPath="$PROJECT_DIR$/.eslintrc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sections/Menu.vue" afterPath="$PROJECT_DIR$/src/sections/Menu.vue" />
-    </list>
+    <list default="true" id="3f2795a6-aedb-4166-9b44-ad3b78fe62f9" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,11 +17,9 @@
       <file leaf-file-name="Menu.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sections/Menu.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-              <folding>
-                <element signature="e#1163#1198#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="197">
+              <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -212,12 +207,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529587886240</updated>
-      <workItem from="1529587888361" duration="22629000" />
+      <workItem from="1529587888361" duration="23241000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22629000" />
+    <option name="totallyTimeSpent" value="23241000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="197" y="26" width="1459" height="973" extended-state="0" />
@@ -501,11 +496,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sections/Menu.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-          <folding>
-            <element signature="e#1163#1198#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="197">
+          <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
