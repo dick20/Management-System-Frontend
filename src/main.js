@@ -8,14 +8,14 @@ import store from './store/index'
 Vue.use(Resource)
 Vue.use(VueHighcharts)
 
-var vRouter = new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: { App }
-})
-Vue.use({
-  vRouter
-})
+// var vRouter = new Vue({
+//   el: '#app',
+//   router,
+//   store,
+//   template: '<App/>',
+//   components: { App }
+// })
+// Vue.use({
+//   vRouter
+// })
 router.start(App, 'body')
