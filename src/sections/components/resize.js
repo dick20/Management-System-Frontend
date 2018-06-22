@@ -1,5 +1,5 @@
 export default function resizeImage (url, width, height, callback) {
-  let sourceImage = new Image()
+  let sourceImage = new window.Image()
   sourceImage.onload = function (evt) {
     console.info('resizeImage width:' + sourceImage.width)
     console.info('resizeImage height:' + sourceImage.height)

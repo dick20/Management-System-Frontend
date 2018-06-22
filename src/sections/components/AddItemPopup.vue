@@ -21,11 +21,11 @@
         <label for="price">价格</label>
         <input type="number" class="control full" v-model.number="price" />
       </div>
+      <!--<div class="hello">-->
+        <!--<image-uploader @onChange="imgChange" ></image-uploader>-->
+      <!--</div>-->
       <div class="hello">
-        <image-uploader @onChange="imgChange" ></image-uploader>
-      </div>
-      <div class="hello">
-        <image-inputer @onChange="imgChange" ></image-inputer>
+        <image-upload @onChange="imgChange" ></image-upload>
       </div>
     </div>
 
@@ -39,13 +39,14 @@
 
 <script>
 import { buildMenuItem } from '../../utils/order'
-import { Button, ImageUploader, ImageInputer } from '.'
+// import { Button, ImageUploader } from '.'
+import { Button, ImageUploader, ImageUpload } from '.'
 
 export default {
   components: {
     AppButton: Button,
     ImageUploader,
-    ImageInputer
+    ImageUpload
   },
   data: function () {
     return {

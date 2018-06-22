@@ -39,7 +39,7 @@
 </template>
 
 <script>
-//  import resizeImage from './resize'
+  import resizeImage from './resize'
 
   export default {
     props: {
@@ -99,7 +99,6 @@
     methods: {
       handleFileChange (e) {
         let files = e.target.files
-        console.log(e.target.files)
 //        let files = input.files
         this.handleFile(files)
 //        let input = this.$refs.input
@@ -160,11 +159,10 @@
           let file = files[i]
           let reader = new window.FileReader()
           reader.onload = function (e) {
-            console.log(e.target.result)
-            _this.imageDataList.push(e.target.result)
-//            resizeImage(e.target.result, 150, 150, function (result) {
-//              _this.imageDataList.push(result)
-//            })
+//            _this.imageDataList.push(e.target.result)
+            resizeImage(e.target.result, 150, 150, function (result) {
+              _this.imageDataList.push(result)
+            })
           }
           reader.readAsDataURL(file)
         }
