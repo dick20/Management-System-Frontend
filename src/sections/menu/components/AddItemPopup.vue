@@ -36,7 +36,7 @@
 
     <div class="button-container">
       <app-button primary={true} @click.native="dismiss">关闭</app-button>
-      <app-button primary={true} @click.native="dismiss" v-if="deleteBtn">删除</app-button>
+      <app-button primary={true} @click.native="dismiss" v-if="deletebtn">删除</app-button>
       <app-button primary={true} @click.native="addItem">确认</app-button>
     </div>
 
@@ -61,18 +61,22 @@ export default {
     categories: {
       type: Array,
       required: true
+    },
+    deletebtn: {
+      type: Boolean,
+      required: true
     }
   },
   data: function () {
     return {
       name: '',
       description: '',
-      price: null,
+      price: '',
       image: '',
       tags: CATEGORIES,
       selectedTags: mapValues(CATEGORIES, () => false),
       item: {},
-      deleteBtn: false
+      deleteBtn: this.deletebtn
     }
   },
   methods: {
@@ -108,28 +112,44 @@ export default {
 //      console.log(json)
 //      api.postMenu(this, json)
     },
-    editItem: function(item, edit) {
-      if (!edit) {
-        this.deleteBtn = true
-      }
+    editItem: function(item) {
+      console.log(item)
+      this.deleteBtn = true
       this.name = item.name
       this.description = item.description.comment
       this.price = item.price
-      this.image.url = item.imageURL
+//      this.image.url = item.imageURL
+      let that = this
       this.categories.filter(function (type) {
-        if (type.categoryID === item.category) {
-
+        if (type.CategoryID === item.CategoryID) {
+          that.toggleTag(type.name)
         }
       })
+    },
+    reset: function() {
+      this.name =  '',
+      this.description = '',
+      this.price = null,
+      this.image = '',
+      this.tags = CATEGORIES,
+      this.selectedTags = mapValues(CATEGORIES, () => false),
+      this.deleteBtn = false
     }
-//    ...mapMutations([
-//      'addMenuItem'
-//    ])
   }
 }
 </script>
 
 <style scoped>
+  .floating-window {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 480px;
+    background: #FAFAFA;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 2px;
+  }
 .add-item-container {
   display: flex;
   flex-direction: column;

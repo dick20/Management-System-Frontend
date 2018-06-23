@@ -1,17 +1,13 @@
 <template>
-  <main class="menu">
-    <div class="menu-header">
-      <app-button primary={true} @click.native="itemPopupVisible = true">新增菜品</app-button>
-    </div>
+  <div class="menu-header">
+    <app-button primary={true} @click.native="toggleBtn()">新增菜品</app-button>
+  </div>
 
-    <transition name="slide-fade">
-      <floating-window v-if="itemPopupVisible">
-        <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" ref="add-item-popup"></add-item-popup>
-      </floating-window>
-    </transition>
-  </main>
+  <div class="floating-window" v-if="itemPopupVisible">
+    <popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:clickitem="clickitem" v-bind:deletebtn="deletebtn"></popup>
+  </div>
 
-  <div class="management-menu">
+  <div ref="popup" class="management-menu">
     <div class="page-header">
       <h1>menu</h1>
       <div class = "dish-list">
@@ -22,7 +18,6 @@
             <div class="dish-description">{{dish.description.comment}}</div>
             <div class="dish-price">￥ {{dish.price}}</div>
             <div class="dish-image" style=" background-image: url({{dish.imageURL}})"></div>
-            <i class="iconfont icon-delete edit-icon" @click.native="deleteClick(dish)"></i>
             <i class="iconfont icon-edit edit-icon" @click.native="editClick(dish)"></i>
           </div>
         </div>
@@ -35,49 +30,63 @@
 <script>
 import api from '../../service/api.js'
 import { Item, AddItemPopup, Button, FloatingWindow } from './components'
-
+import Vue from 'vue'
 export default {
   name: 'Menu',
   components: {
     Item,
     AppButton: Button,
-    FloatingWindow,
-    AddItemPopup
+    popup: AddItemPopup
   },
   data: function () {
     return {
       itemPopupVisible: false,
-      categories: []
+      categories: [],
+      clickitem: null,
+      deletebtn: false
     }
   },
   methods: {
+    toggleBtn:function () {
+      this.itemPopupVisible = true
+      this.deletebtn = false
+    },
     itempopupvisible: function () {
       this.itemPopupVisible = false
     },
-    editClick: function (item) {
+    editClick:function (item) {
+      this.deletebtn = true
+      this.clickitem = item
       this.itemPopupVisible = true
-      this.$.refs.add-item-popup.editItem(item, 1)
-    },
-    deleteClick:function (item) {
-      this.itemPopupVisible = true
-      this.$.refs.add-item-popup.editItem(item, 0)
+      this.$nextTick(function () {
+        this.$children[1].editItem(item)
+      })
     }
   },
   ready: function () {
     api.getMenu(this).then((res) => {
-//      console.log(res.data[0].name)
       if (res.status === 200) {
         this.$set('categories', res.data)
       }
       console.log(this.categories)
     })
+    this.$mount()
   }
 
 }
 </script>
 
 <style scoped>
-
+  .floating-window {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 480px;
+    background: #FAFAFA;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 2px;
+  }
 .menu-header {
   padding: 8px;
   display: flex;
