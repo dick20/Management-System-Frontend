@@ -145,6 +145,7 @@ export default {
   /*width: 90px;*/
   /*height: 90px;*/
   color: #009dff;
+  cursor: pointer;
 }
 .dish:hover>.edit-icon {
   visibility: visible;

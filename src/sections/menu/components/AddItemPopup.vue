@@ -18,6 +18,7 @@
             @click='toggleTag(tag)'>
             {{ tag }}
           </div>
+          <i class="iconfont icon-add add-icon tag"></i>
       </div>
       <div class="control-container">
         <label for="description">描述</label>
@@ -40,7 +41,7 @@
 
     <div class="button-container">
       <app-button primary={true} @click.native="dismiss">取消</app-button>
-      <app-button primary={true} @click.native="dismiss" v-if="deletebtn">删除</app-button>
+      <app-button primary={true} @click.native="deleteItem" v-if="deletebtn">删除</app-button>
       <app-button primary={true} @click.native="addItem">确认</app-button>
     </div>
 
@@ -75,7 +76,7 @@ export default {
     return {
       name: '',
       description: '',
-      price: '',
+      price: null,
       image: '',
       tags: CATEGORIES,
       selectedTags: mapValues(CATEGORIES, () => false),
@@ -87,6 +88,7 @@ export default {
     toggleTag (tag) {
       Vue.set(this.selectedTags, tag, !this.selectedTags[tag])
       this.item.category = tag
+      console.log(this.item.category)
     },
     addItem: function () {
       this.item.name = this.name
@@ -109,14 +111,18 @@ export default {
       })
       json.description = []
       json.description.comment = item.description
-      json.description.hot = 0
+      json.description.hot = 5
       json.description.monthlySales = 0
-      json.dishID = this.categories[json.CategoryID].dish.length
+      json.dishID = this.categories[json.CategoryID-1].dish.length+1
       json.name = item.name
-      json.price = item.price
+      json.price = Number(item.price)
       json.imageURL = item.image
       console.log(json)
-      api.postMenu(this, json)
+      if (this.deletebtn === true) {
+        api.posttMenu(json)
+      } else {
+        api.postMenu(json)
+      }
     },
     editItem: function(item) {
       console.log(item)
@@ -249,5 +255,11 @@ export default {
     font-size: smaller;
     margin: 4px;
   }
-
+  .add-icon {
+    width: 50px;
+    vertical-align: middle;
+    text-align: center;
+    background: #ffdc66;
+    font-weight: bold;
+  }
 </style>
