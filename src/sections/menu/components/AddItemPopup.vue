@@ -35,8 +35,9 @@
     </div>
 
     <div class="button-container">
-      <app-button primary={true} @click.native="addItem">添加</app-button>
       <app-button primary={true} @click.native="dismiss">关闭</app-button>
+      <app-button primary={true} @click.native="dismiss" v-if="deleteBtn">删除</app-button>
+      <app-button primary={true} @click.native="addItem">确认</app-button>
     </div>
 
   </div>
@@ -70,7 +71,8 @@ export default {
       image: '',
       tags: CATEGORIES,
       selectedTags: mapValues(CATEGORIES, () => false),
-      item: {}
+      item: {},
+      deleteBtn: false
     }
   },
   methods: {
@@ -105,6 +107,20 @@ export default {
       json.price = item.price
 //      console.log(json)
 //      api.postMenu(this, json)
+    },
+    editItem: function(item, edit) {
+      if (!edit) {
+        this.deleteBtn = true
+      }
+      this.name = item.name
+      this.description = item.description.comment
+      this.price = item.price
+      this.image.url = item.imageURL
+      this.categories.filter(function (type) {
+        if (type.categoryID === item.category) {
+
+        }
+      })
     }
 //    ...mapMutations([
 //      'addMenuItem'

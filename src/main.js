@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Resource from 'vue-resource'
-import Icon from 'vue-svg-icon/Icon.vue'
 import VueHighcharts from 'vue-highcharts'
 import App from './App'
 import router from './router'
@@ -9,7 +8,6 @@ import store from './store/index'
 // Start up app
 Vue.use(Resource)
 Vue.use(VueHighcharts)
-Vue.component('icon', Icon)
 // Vue.use(svgicon, {
 //   tagName: 'app-icon'
 // })

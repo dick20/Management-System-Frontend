@@ -6,7 +6,7 @@
 
     <transition name="slide-fade">
       <floating-window v-if="itemPopupVisible">
-        <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories"></add-item-popup>
+        <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" ref="add-item-popup"></add-item-popup>
       </floating-window>
     </transition>
   </main>
@@ -22,8 +22,8 @@
             <div class="dish-description">{{dish.description.comment}}</div>
             <div class="dish-price">￥ {{dish.price}}</div>
             <div class="dish-image" style=" background-image: url({{dish.imageURL}})"></div>
-            <i class="iconfont icon-delete edit-icon"></i>
-            <i class="iconfont icon-edit edit-icon"></i>
+            <i class="iconfont icon-delete edit-icon" @click.native="deleteClick(dish)"></i>
+            <i class="iconfont icon-edit edit-icon" @click.native="editClick(dish)"></i>
           </div>
         </div>
       </div>
@@ -53,6 +53,14 @@ export default {
   methods: {
     itempopupvisible: function () {
       this.itemPopupVisible = false
+    },
+    editClick: function (item) {
+      this.itemPopupVisible = true
+      this.$.refs.add-item-popup.editItem(item, 1)
+    },
+    deleteClick:function (item) {
+      this.itemPopupVisible = true
+      this.$.refs.add-item-popup.editItem(item, 0)
     }
   },
   ready: function () {
