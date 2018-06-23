@@ -30,6 +30,9 @@
 
       <div class="control-container">
         <label>上传图片</label>
+        <label class="path-text">图片URL</label>
+        <input type="text" class="control full" v-model="image" />
+        <label class="path-text">本地图片</label>
         <image-upload v-bind:image="image"></image-upload>
       </div>
 
@@ -89,7 +92,7 @@ export default {
       this.item.name = this.name
       this.item.description = this.description
       this.item.price = this.price
-      this.item.image = ''
+      this.item.image = this.image
       this.addMenuItem(this.item)
       this.dismiss()
     },
@@ -98,6 +101,7 @@ export default {
     },
     addMenuItem: function (item) {
       let json = {}
+      let _type
       this.categories.filter(function (type) {
         if (type.name === item.category) {
           json.CategoryID = type.CategoryID
@@ -107,11 +111,12 @@ export default {
       json.description.comment = item.description
       json.description.hot = 0
       json.description.monthlySales = 0
-      json.dishID = 0
+      json.dishID = this.categories[json.CategoryID].dish.length
       json.name = item.name
       json.price = item.price
-//      console.log(json)
-//      api.postMenu(this, json)
+      json.imageURL = item.image
+      console.log(json)
+      api.postMenu(this, json)
     },
     editItem: function(item) {
       console.log(item)
@@ -176,7 +181,7 @@ export default {
 
 .control-container {
   padding: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .control-container.inline {
@@ -186,7 +191,7 @@ export default {
 }
 
 .control {
-  height: 32px;
+  height: 30px;
   box-sizing: border-box;
   border: 1px solid #ededed;
   border-radius: 4px;
@@ -239,5 +244,10 @@ export default {
   flex-direction: row-reverse;
   padding: 8px;
 }
+  .path-text{
+    width: 100%;
+    font-size: smaller;
+    margin: 4px;
+  }
 
 </style>

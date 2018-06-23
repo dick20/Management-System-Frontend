@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f2795a6-aedb-4166-9b44-ad3b78fe62f9" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sections/menu/components/AddItemPopup.vue" afterPath="$PROJECT_DIR$/src/sections/menu/components/AddItemPopup.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sections/menu/components/ImageUpload.vue" afterPath="$PROJECT_DIR$/src/sections/menu/components/ImageUpload.vue" />
     </list>
@@ -49,27 +50,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="order.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/order.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AddItemPopup.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sections/menu/components/AddItemPopup.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="196" column="0" lean-forward="true" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+            <state relative-caret-position="554">
+              <caret line="119" column="6" lean-forward="true" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
               <folding>
-                <element signature="e#1446#1512#0" expanded="true" />
-                <element signature="e#2305#2509#0" expanded="false" />
-                <element signature="e#2536#2580#0" expanded="false" />
-                <element signature="e#2615#3083#0" expanded="false" />
-                <element signature="e#3513#3741#0" expanded="false" />
+                <element signature="e#1606#1672#0" expanded="true" />
+                <element signature="e#2704#2748#0" expanded="false" />
+                <element signature="e#3769#3997#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -78,8 +67,18 @@
       <file leaf-file-name="ImageUpload.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sections/menu/components/ImageUpload.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1823">
-              <caret line="179" column="24" lean-forward="true" selection-start-line="179" selection-start-column="24" selection-end-line="179" selection-end-column="24" />
+            <state relative-caret-position="3480">
+              <caret line="234" column="18" lean-forward="false" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Button.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sections/menu/components/Button.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -118,7 +117,6 @@
       <find>maxsize</find>
       <find>window</find>
       <find>upload_warp_img_div_text</find>
-      <find>hello</find>
       <find>item.file.src</find>
       <find>imageDataList</find>
       <find>length</find>
@@ -126,6 +124,7 @@
       <find>menu.categories</find>
       <find>axios</find>
       <find>addMenuItem</find>
+      <find>hello</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,8 +165,8 @@
         <option value="$PROJECT_DIR$/build/webpack.base.conf.js" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/sections/menu/Menu.vue" />
-        <option value="$PROJECT_DIR$/src/sections/menu/components/AddItemPopup.vue" />
         <option value="$PROJECT_DIR$/src/sections/menu/components/ImageUpload.vue" />
+        <option value="$PROJECT_DIR$/src/sections/menu/components/AddItemPopup.vue" />
       </list>
     </option>
   </component>
@@ -308,12 +307,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529587886240</updated>
-      <workItem from="1529587888361" duration="76901000" />
+      <workItem from="1529587888361" duration="78553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76901000" />
+    <option name="totallyTimeSpent" value="78553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="148" y="29" width="1459" height="973" extended-state="0" />
@@ -739,24 +738,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sections/menu/components/Button.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sections/menu/components/ImageUpload.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1823">
-          <caret line="179" column="24" lean-forward="true" selection-start-line="179" selection-start-column="24" selection-end-line="179" selection-end-column="24" />
+        <state relative-caret-position="3480">
+          <caret line="234" column="18" lean-forward="false" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sections/menu/components/AddItemPopup.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="196" column="0" lean-forward="true" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+        <state relative-caret-position="554">
+          <caret line="119" column="6" lean-forward="true" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
           <folding>
-            <element signature="e#1446#1512#0" expanded="true" />
-            <element signature="e#2305#2509#0" expanded="false" />
-            <element signature="e#2536#2580#0" expanded="false" />
-            <element signature="e#2615#3083#0" expanded="false" />
-            <element signature="e#3513#3741#0" expanded="false" />
+            <element signature="e#1606#1672#0" expanded="true" />
+            <element signature="e#2704#2748#0" expanded="false" />
+            <element signature="e#3769#3997#0" expanded="false" />
           </folding>
         </state>
       </provider>

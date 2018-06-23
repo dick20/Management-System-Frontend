@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+
     <div class="upload">
       <div class="upload_warp">
         <div class="upload_warp_left" @click="fileClick">
@@ -24,7 +24,7 @@
       </div>
 
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -206,17 +206,6 @@
     font-size: 14px;
   }
 
-  .upload_warp_right {
-    float: left;
-    width: 57%;
-    margin-left: 2%;
-    height: 100%;
-    border: 1px dashed #999;
-    border-radius: 4px;
-    line-height: 130px;
-    color: #999;
-  }
-
   .upload_warp_left img {
     margin-top: 32px;
     margin-left: 40px;
@@ -237,14 +226,15 @@
   }
 
   .upload {
+    /*margin-top: 20px;*/
+    margin-left: 3px;
+    margin-top: 6px;
     border: 1px solid #ccc;
     background-color: #fff;
     width: 400px;
+    height: 200px;
     box-shadow: 0px 1px 0px #ccc;
     border-radius: 4px;
   }
 
-  .hello {
-    width: 250px;
-  }
 </style>
