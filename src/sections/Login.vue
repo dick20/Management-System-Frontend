@@ -10,11 +10,11 @@
           | 请登录
       form.form-horizontal
         .form-group
-          label.col-sm-2.control-label(for='inputEmail3') Username
+          label.col-sm-2.control-label(for='inputEmail3') 电话
           .col-sm-10
-            input.form-control(type='text', placeholder='Username', v-model='username')
+            input.form-control(type='text', placeholder='Phone', v-model='phone')
         .form-group
-          label.col-sm-2.control-label(for='inputPassword3') Password
+          label.col-sm-2.control-label(for='inputPassword3') 密码
           .col-sm-10
             input#inputPassword3.form-control(type='password', placeholder='Password', v-model='password')
         .form-group
@@ -26,7 +26,7 @@
               br
         .form-group
           .col-sm-offset-2.col-sm-10
-            button.btn.btn-default(type='button', v-on:click='login(username, password)') Sign in
+            button.btn.btn-default(type='button', v-on:click='login(phone, password)') Sign in
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
   name: 'Login',
   data: function () {
     return {
-      username: '',
+      phone: '',
       password: '',
       remember: false,
       error: false,
@@ -51,15 +51,15 @@ export default {
     }
   },
   methods: {
-    login: function (username, password) {
+    login: function (phone, password) {
       var self = this
       self.showError = function (message) {
         self.$set('error', true)
         self.$set('message', message)
       }
 
-      if (!username || username === '') {
-        self.showError('请输入用户名！'); return false
+      if (!phone || phone === '') {
+        self.showError('请输入电话！'); return false
       }
 
       if (!password || password === '') {
@@ -67,7 +67,7 @@ export default {
       }
 
       auth.login(this, {
-        phone: username,
+        phone: phone,
         password: password
       }).then((res) => {
         console.log(res)
@@ -77,7 +77,7 @@ export default {
           self.showError(res.msg)
         }
       }).catch((res) => {
-        this.showError('服务器发生错误！')
+        this.showError('电话或密码错误！')
       })
     }
   },

@@ -14,18 +14,15 @@ export default {
     }
     return user
   },
-
-  // authentication status
   isAuthenticated: function () {
     return window.localStorage.getItem('user') != null
   },
-
-  // Send a request to the login URL and save the returned JWT
   login (context, creds, redirect) {
     return context.$http.post(apiRoot + '/restaurant/session', creds).then((res) => {
-      let user
+      let user = {}
       if (res.status === 200) {
-        user = res.body
+        user.data = res.body
+        user.status = 200
       } else {
         return {
           data: null,
@@ -35,13 +32,12 @@ export default {
       }
       window.localStorage.setItem('user', JSON.stringify(user.data))
       context.$root.user = user.data
-      return res
+      return user
     })
   },
-
-    // To log out
   logout: function (context) {
-    context.$http.get(apiRoot + '/restaurant/session').then(() => {
+    context.$http.delete(apiRoot + '/restaurant/session').then((res) => {
+      console.log(res)
       window.localStorage.removeItem('user')
       router.go('/login')
     })
