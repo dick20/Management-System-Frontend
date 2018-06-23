@@ -10,11 +10,7 @@
           | 请登录
       form.form-horizontal
         .form-group
-<<<<<<< HEAD
-          label.col-sm-2.control-label(for='inputEmail3') Phone
-=======
           label.col-sm-2.control-label(for='inputEmail3') 电话
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
           .col-sm-10
             input.form-control(type='text', placeholder='Phone', v-model='phone')
         .form-group

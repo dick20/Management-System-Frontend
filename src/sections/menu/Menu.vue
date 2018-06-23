@@ -9,11 +9,7 @@
 
   <div ref="popup" class="management-menu">
     <div class="page-header">
-<<<<<<< HEAD
       <h1>Menu</h1>
-=======
-      <h1>menu</h1>
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
       <div class = "dish-list">
         <div class = "category" v-for="category in categories">
           <h2>{{category.name}}</h2>
@@ -33,12 +29,7 @@
 
 <script>
 import api from '../../service/api.js'
-<<<<<<< HEAD
 import { Item, AddItemPopup, Button } from './components'
-=======
-import { Item, AddItemPopup, Button, FloatingWindow } from './components'
-import Vue from 'vue'
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
 export default {
   name: 'Menu',
   components: {
@@ -55,22 +46,14 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
     toggleBtn: function () {
-=======
-    toggleBtn:function () {
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
       this.itemPopupVisible = true
       this.deletebtn = false
     },
     itempopupvisible: function () {
       this.itemPopupVisible = false
     },
-<<<<<<< HEAD
     editClick: function (item) {
-=======
-    editClick:function (item) {
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
       this.deletebtn = true
       this.clickitem = item
       this.itemPopupVisible = true
@@ -84,11 +67,7 @@ export default {
       if (res.status === 200) {
         this.$set('categories', res.data)
       }
-<<<<<<< HEAD
       // console.log(this.categories)
-=======
-      console.log(this.categories)
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
     })
     this.$mount()
   }

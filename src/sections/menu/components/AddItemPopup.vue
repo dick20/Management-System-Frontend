@@ -52,10 +52,6 @@
 <script>
 import { Button, ImageUploader, ImageUpload, CATEGORIES } from '.'
 import Vue from 'vue'
-<<<<<<< HEAD
-=======
-import { mapMutations } from 'vuex'
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
 import mapValues from 'lodash/mapValues'
 import api from '../../../service/api.js'
 
@@ -106,10 +102,6 @@ export default {
     },
     addMenuItem: function (item) {
       let json = {}
-<<<<<<< HEAD
-=======
-      let _type
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
       this.categories.filter(function (type) {
         if (type.name === item.category) {
           json.CategoryID = type.CategoryID
@@ -119,11 +111,7 @@ export default {
       json.description.comment = item.description
       json.description.hot = 5
       json.description.monthlySales = 0
-<<<<<<< HEAD
       json.dishID = this.categories[json.CategoryID - 1].dish.length + 1
-=======
-      json.dishID = this.categories[json.CategoryID-1].dish.length+1
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
       json.name = item.name
       json.price = Number(item.price)
       json.imageURL = item.image
@@ -134,11 +122,7 @@ export default {
         api.postMenu(json)
       }
     },
-<<<<<<< HEAD
     editItem: function (item) {
-=======
-    editItem: function(item) {
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
       console.log(item)
       this.deleteBtn = true
       this.name = item.name
@@ -152,7 +136,6 @@ export default {
         }
       })
     },
-<<<<<<< HEAD
     reset: function () {
       this.name = ''
       this.description = ''
@@ -160,15 +143,6 @@ export default {
       this.image = ''
       this.tags = CATEGORIES
       this.selectedTags = mapValues(CATEGORIES, () => false)
-=======
-    reset: function() {
-      this.name =  '',
-      this.description = '',
-      this.price = null,
-      this.image = '',
-      this.tags = CATEGORIES,
-      this.selectedTags = mapValues(CATEGORIES, () => false),
->>>>>>> b6a1f73fd6455f59bd6214e308447f3446d9f94e
       this.deleteBtn = false
     }
   }
