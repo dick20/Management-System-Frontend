@@ -30,12 +30,13 @@
 
       <div class="control-container">
         <label>上传图片</label>
-        <image-upload></image-upload>
+        <image-upload v-bind:image="image"></image-upload>
       </div>
+
     </div>
 
     <div class="button-container">
-      <app-button primary={true} @click.native="dismiss">关闭</app-button>
+      <app-button primary={true} @click.native="dismiss">取消</app-button>
       <app-button primary={true} @click.native="dismiss" v-if="deletebtn">删除</app-button>
       <app-button primary={true} @click.native="addItem">确认</app-button>
     </div>
@@ -118,7 +119,7 @@ export default {
       this.name = item.name
       this.description = item.description.comment
       this.price = item.price
-//      this.image.url = item.imageURL
+      this.image = item.imageURL
       let that = this
       this.categories.filter(function (type) {
         if (type.CategoryID === item.CategoryID) {

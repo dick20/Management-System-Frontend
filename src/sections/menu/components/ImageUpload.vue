@@ -5,6 +5,7 @@
         <div class="upload_warp_left" @click="fileClick">
           <img src="../../assets/upload.png">
         </div>
+        <img :src="image" class="oriImage" v-if="imgNotChange">
         <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
         <div class="upload_warp_img" v-show="imgList.length!=0">
           <div class="upload_warp_img_div" v-for="(index, item) in imgList">
@@ -29,10 +30,17 @@
 <script>
   export default {
     name: 'image-upload',
+    props: {
+      image: {
+        type: String,
+        required: true
+      }
+    },
     data () {
       return {
         imgList: [],
-        size: 0
+        size: 0,
+        imgNotChange: true
       }
     },
     methods: {
@@ -80,6 +88,7 @@
         })
       },
       fileAdd (file) {
+        this.imgNotChange = false
         if (this.limit !== undefined) this.limit--
         if (this.limit !== undefined && this.limit < 0) return
         // 总大小
@@ -113,6 +122,9 @@
       fileDel (index) {
         this.size = this.size - this.imgList[index].file.size  // 总大小
         this.imgList.splice(index, 1)
+        if (this.imgList.length === 0) {
+          this.imgNotChange = true
+        }
         if (this.limit !== undefined) this.limit = this.imgList.length
       },
       bytesToSize (bytes) {
@@ -126,6 +138,12 @@
   }
 </script>
 <style scoped>
+  .oriImage {
+    margin-left: 30px;
+    vertical-align: middle;
+    height: 120px;
+    height: 120px;
+  }
   .upload_warp_img_div_del {
     position: absolute;
     top: 6px;
@@ -164,7 +182,7 @@
     height: 100px;
     width: 120px;
     border: 1px solid #ccc;
-    margin: 0px 30px 10px 0px;
+    margin: 0px 30px 10px 30px;
     float: left;
     line-height: 100px;
     display: table-cell;
