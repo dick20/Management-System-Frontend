@@ -1,8 +1,8 @@
 {
-  "name": "matrix-monitor",
+  "name": "hippo-management",
   "version": "1.0.0",
-  "description": "Matrix Monitor System",
-  "author": "yejq",
+  "description": "Tiny Hippo Management",
+  "author": "ecer23",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

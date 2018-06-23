@@ -16,8 +16,7 @@ export default {
       'pageSize': 10,
       'pageNumber': 1
     }
-    api.getOrder(this, param.pageSize, param.pageNumber).then((res) => {
-      console.log(res.data)
+    api.getOrder(param.pageSize, param.pageNumber).then((res) => {
     })
   }
 }

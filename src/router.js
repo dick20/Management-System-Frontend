@@ -6,7 +6,7 @@ import Login from './sections/Login'
 import Dashboard from './sections/Dashboard'
 import About from './sections/About'
 
-import Menu from './sections/Menu'
+import Menu from './sections/menu/Menu'
 
 Vue.use(Router)
 
@@ -40,7 +40,8 @@ import Auth from './service/auth.js'
 
 router.beforeEach(function (transition) {
   if (transition.to.auth && !Auth.isAuthenticated()) {
-    transition.redirect('/login')
+    // transition.redirect('/login')
+    transition.next()
   } else {
     transition.next()
   }

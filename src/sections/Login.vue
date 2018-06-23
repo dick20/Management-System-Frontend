@@ -10,9 +10,9 @@
           | 请登录
       form.form-horizontal
         .form-group
-          label.col-sm-2.control-label(for='inputEmail3') Username
+          label.col-sm-2.control-label(for='inputEmail3') Phone
           .col-sm-10
-            input.form-control(type='text', placeholder='Username', v-model='username')
+            input.form-control(type='text', placeholder='Phone', v-model='phone')
         .form-group
           label.col-sm-2.control-label(for='inputPassword3') Password
           .col-sm-10
@@ -26,7 +26,7 @@
               br
         .form-group
           .col-sm-offset-2.col-sm-10
-            button.btn.btn-default(type='button', v-on:click='login(username, password)') Sign in
+            button.btn.btn-default(type='button', v-on:click='login(phone, password)') Sign in
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
   name: 'Login',
   data: function () {
     return {
-      username: '',
+      phone: '',
       password: '',
       remember: false,
       error: false,
@@ -51,15 +51,15 @@ export default {
     }
   },
   methods: {
-    login: function (username, password) {
+    login: function (phone, password) {
       var self = this
       self.showError = function (message) {
         self.$set('error', true)
         self.$set('message', message)
       }
 
-      if (!username || username === '') {
-        self.showError('请输入用户名！'); return false
+      if (!phone || phone === '') {
+        self.showError('请输入电话！'); return false
       }
 
       if (!password || password === '') {
@@ -67,7 +67,7 @@ export default {
       }
 
       auth.login(this, {
-        phone: username,
+        phone: phone,
         password: password
       }).then((res) => {
         console.log(res)
