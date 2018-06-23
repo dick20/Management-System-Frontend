@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import api from '../../service/api.js'
-import { Item, AddItemPopup, Button, FloatingWindow } from './components'
+import api from '../service/api.js'
+import { Item, AddItemPopup, Button, FloatingWindow } from '../components'
 import Vue from 'vue'
 export default {
   name: 'Menu',
@@ -69,7 +69,6 @@ export default {
         this.$set('categories', res.data)
       }
     })
-    this.$mount()
   }
 
 }
@@ -86,71 +85,54 @@ export default {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 2px;
   }
-.menu-header {
-  float: right;
-}
+  .menu-header {
+    float: right;
+  }
 
-.category-container {
-  padding: 18px 0;
-}
+  .category {
+    width: 100%;
+    display: inline-block;
+  }
 
-.category-header {
-  margin-left: 8px;
-  text-transform: uppercase;
-  color: #FF5722;
-}
+  .dish {
+    width: 230px;
+    height: 230px;
+    background-color: #f0efef;
+    display: inline-block;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+  }
 
-.item-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.category {
-  width: 100%;
-  display: inline-block;
-}
+  .dish-name {
+    font-weight: bold;
+    margin-left: 3px;
+    margin-top: 2px;
+  }
 
-.dish {
-  width: 200px;
-  height: 230px;
-  background-color: #f0efef;
-  display: inline-block;
-  padding: 5px;
-  margin: 20px;
-  border-radius: 10px;
-}
+  .dish-description {
+    font-size: 10px;
+  }
 
-.dish-name {
-  font-weight: bold;
-  margin-left: 3px;
-  margin-top: 2px;
-}
+  .dish-price {
+    color: red;
+    font-weight: bold;
+    text-align: right;
+  }
 
-.dish-description {
-  font-size: 10px;
-}
-
-.dish-price {
-  color: red;
-  font-weight: bold;
-  text-align: right;
-}
-
-.dish-image {
-  height: 150px;
-  background-size: cover;
-  border-radius: 10px;
-}
-.edit-icon {
-  float: right;
-  /*display: flex;*/
-  margin-top:-3px;
-  margin-right:5px;
-  /*width: 90px;*/
-  /*height: 90px;*/
-  color: #009dff;
-  cursor: pointer;
-}
-.dish:hover>.edit-icon {
-  visibility: visible;
-}
+  .dish-image {
+    height: 150px;
+    background-size: cover;
+    border-radius: 10px;
+  }
+  .edit-icon {
+    float: right;
+    margin-top:-3px;
+    margin-right:5px;
+    color: #009dff;
+    cursor: pointer;
+  }
+  .dish:hover>.edit-icon {
+    visibility: visible;
+  }
 </style>

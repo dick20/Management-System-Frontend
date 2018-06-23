@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 import Login from './sections/Login'
-
 import Dashboard from './sections/Dashboard'
 import MachineDetail from './sections/MachineDetail'
-
-import Menu from './sections/menu/Menu'
+import Menu from './sections/Menu'
 
 Vue.use(Router)
 

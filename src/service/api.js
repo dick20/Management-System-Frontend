@@ -5,12 +5,12 @@ export default {
   getMenu: function (context) {
     // return context.$http.get(apiRoot + 'restaurant/category')
     axios.get(apiRoot + 'restaurant/category')
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      // .then(function (response) {
+      //   console.log(response)
+      // })
+      // .catch(function (error) {
+      //   console.log(error)
+      // })
     return axios.get(apiRoot + 'restaurant/category')
   },
   postMenu: function (item) {
