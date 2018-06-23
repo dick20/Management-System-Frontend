@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f2795a6-aedb-4166-9b44-ad3b78fe62f9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/iconfont.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/iconfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/iconfont.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/iconfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/iconfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/iconfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/assets/del.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/assets/upload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/menu/Menu.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/menu/components/AddItemPopup.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/menu/components/Button.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/menu/components/FloatingWindow.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/menu/components/ImageUpload.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sections/menu/components/index.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router.js" afterPath="$PROJECT_DIR$/src/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/api.js" afterPath="$PROJECT_DIR$/src/service/api.js" />
-    </list>
+    <list default="true" id="3f2795a6-aedb-4166-9b44-ad3b78fe62f9" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -318,12 +300,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529587886240</updated>
-      <workItem from="1529587888361" duration="86332000" />
+      <workItem from="1529587888361" duration="86410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86332000" />
+    <option name="totallyTimeSpent" value="86410000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="148" y="29" width="1459" height="973" extended-state="0" />
