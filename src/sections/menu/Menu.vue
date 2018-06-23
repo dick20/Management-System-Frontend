@@ -7,7 +7,7 @@
     <popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:clickitem="clickitem" v-bind:deletebtn="deletebtn"></popup>
   </div>
 
-  <div ref="popup" class="management-menu">
+  <div class="management-menu">
     <div class="page-header">
       <h1>menu</h1>
       <div class = "dish-list">
@@ -16,7 +16,7 @@
           <div class = "dish" v-for="dish in category.dish">
             <div class = "dish-name">{{dish.name}}</div>
             <div class="dish-description">{{dish.description.comment}}</div>
-            <div class="dish-price">￥ {{dish.price}}</div>
+            <div class="dish-price">￥ {{dish.price}}.00</div>
             <div class="dish-image" style=" background-image: url({{dish.imageURL}})"></div>
             <i class="iconfont icon-edit edit-icon" @click.native="editClick(dish)"></i>
           </div>
@@ -68,7 +68,6 @@ export default {
       if (res.status === 200) {
         this.$set('categories', res.data)
       }
-      console.log(this.categories)
     })
     this.$mount()
   }
@@ -88,9 +87,7 @@ export default {
     border-radius: 2px;
   }
 .menu-header {
-  padding: 8px;
-  display: flex;
-  flex-direction: row-reverse;
+  float: right;
 }
 
 .category-container {
@@ -114,15 +111,18 @@ export default {
 
 .dish {
   width: 200px;
-  height: 200px;
+  height: 230px;
   background-color: #f0efef;
   display: inline-block;
   padding: 5px;
   margin: 20px;
+  border-radius: 10px;
 }
 
 .dish-name {
   font-weight: bold;
+  margin-left: 3px;
+  margin-top: 2px;
 }
 
 .dish-description {
@@ -130,18 +130,21 @@ export default {
 }
 
 .dish-price {
-  color: red
+  color: red;
+  font-weight: bold;
+  text-align: right;
 }
 
 .dish-image {
-  height: 100px;
+  height: 150px;
   background-size: cover;
+  border-radius: 10px;
 }
 .edit-icon {
-  /*visibility: hidden;*/
   float: right;
-  margin-top:10px;
-  margin-right:10px;
+  /*display: flex;*/
+  margin-top:-3px;
+  margin-right:5px;
   /*width: 90px;*/
   /*height: 90px;*/
   color: #009dff;

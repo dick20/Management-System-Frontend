@@ -10,16 +10,11 @@ export default {
       })
       .catch(function (error) {
         console.log(error)
-      }).then(function (response) {
-      console.log(response)
-    })
-      .catch(function (error) {
-        console.log(error)
       })
     return axios.get(apiRoot + 'restaurant/category')
   },
   postMenu: function (item) {
-    axios.post(apiRoot + 'restaurant/category', {item})
+    axios.post(apiRoot + 'restaurant/category', item)
       .then(function (response) {
         console.log(response)
       })

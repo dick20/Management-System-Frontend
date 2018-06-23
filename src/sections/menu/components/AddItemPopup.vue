@@ -119,7 +119,7 @@ export default {
       json.imageURL = item.image
       console.log(json)
       if (this.deletebtn === true) {
-        api.posttMenu(json)
+        api.postMenu(json)
       } else {
         api.postMenu(json)
       }
