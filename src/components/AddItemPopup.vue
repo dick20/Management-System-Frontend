@@ -120,9 +120,9 @@ export default {
       json.imageURL = item.image
       console.log(json)
       if (this.deletebtn === true) {
-        api.postMenu(json)
+        api.putDish(json)
       } else {
-        api.postMenu(json)
+        api.postDish(json)
       }
     },
     editItem: function(item) {
@@ -139,7 +139,8 @@ export default {
         }
       })
     },
-    deleteItem: function(item) {
+    deleteItem: function() {
+      api.deleteDish(this.name)
     }
   }
 }

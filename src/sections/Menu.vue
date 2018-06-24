@@ -4,7 +4,7 @@
   </div>
 
   <div class="floating-window" v-if="itemPopupVisible">
-    <popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:clickitem="clickitem" v-bind:deletebtn="deletebtn"></popup>
+    <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:clickitem="clickitem" v-bind:deletebtn="deletebtn"></add-item-popup>
   </div>
 
   <div class="management-menu">
@@ -29,20 +29,18 @@
 
 <script>
 import api from '../service/api.js'
-import { Item, AddItemPopup, Button, FloatingWindow } from '../components'
+import { AddItemPopup, Button } from '../components'
 import Vue from 'vue'
 export default {
   name: 'Menu',
   components: {
-    Item,
     AppButton: Button,
-    popup: AddItemPopup
+    AddItemPopup
   },
   data: function () {
     return {
       itemPopupVisible: false,
       categories: [],
-      clickitem: null,
       deletebtn: false
     }
   },
@@ -56,7 +54,6 @@ export default {
     },
     editClick:function (item) {
       this.deletebtn = true
-      this.clickitem = item
       this.itemPopupVisible = true
       this.$nextTick(function () {
         this.$children[1].editItem(item)
@@ -67,6 +64,7 @@ export default {
     api.getMenu(this).then((res) => {
       if (res.status === 200) {
         this.$set('categories', res.data)
+        console.log(this.categories)
       }
     })
   }

@@ -13,7 +13,7 @@ export default {
       // })
     return axios.get(apiRoot + 'restaurant/category')
   },
-  postMenu: function (item) {
+  postDish: function (item) {
     axios.post(apiRoot + 'restaurant/category', item)
       .then(function (response) {
         console.log(response)
@@ -22,8 +22,18 @@ export default {
         console.log(error)
       })
   },
-  putMenu:function (item) {
+  putDish:function (item) {
     axios.put(apiRoot + 'restaurant/dish/' + item.dishID, item)
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  },
+  deleteDish:function (dishID) {
+    console.log(dishID)
+    axios.delete(apiRoot + 'restaurant/dish/' + dishID)
       .then(function (response) {
         console.log(response)
       })
