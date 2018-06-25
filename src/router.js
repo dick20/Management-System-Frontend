@@ -4,6 +4,7 @@ import Login from './sections/Login'
 import Dashboard from './sections/Dashboard'
 import About from './sections/About'
 import Menu from './sections/Menu'
+import Order from './sections/Order'
 
 Vue.use(Router)
 
@@ -20,6 +21,11 @@ router.map({
   'menu': {
     name: 'Menu',
     component: Menu,
+    auth: true
+  },
+  'order': {
+    name: 'Order',
+    component: Order,
     auth: true
   },
   'about': {

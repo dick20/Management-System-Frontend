@@ -7,13 +7,15 @@
     li
       a(v-link="{ path: '/menu' }") 菜品
     li
+      a(v-link="{ path: '/order' }") 订单
+    li
       a(v-link="{ path: '/about' }") 关于我们
     dropdown(:text='isAuthenticated() ? getUser().restaurantName : "None"', slot='right')
       li
         a(href='javascript:void(0)', v-on:click='logout') Logout
   navbar(placement='top', type='default', v-show='!$route.auth')
     a.navbar-brand(slot='brand', href='/', title='Home') Hippo 管理系统
-  
+
 </template>
 
 <script>
