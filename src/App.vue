@@ -16,6 +16,7 @@
 import monitornav from './components/Nav'
 
 export default {
+  name: 'app',
   components: {
     monitornav
   },

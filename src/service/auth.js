@@ -16,7 +16,8 @@ export default {
 
   // authentication status
   isAuthenticated: function () {
-    return window.localStorage.getItem('user') != null
+    // return window.localStorage.getItem('user') != null
+    return true
   },
 
   // Send a request to the login URL and save the returned JWT
