@@ -3,7 +3,7 @@ let apiRoot = 'http://111.230.31.38:8080/'
 
 export default {
   getMenu: function (context) {
-    axios.get(apiRoot + 'restaurant/category')
+    axios.get(apiRoot + 'restaurant/category', { headers: { 'Access-Control-Allow-Origin': '*' } })
       .then(function (response) {
         console.log(response)
       })
