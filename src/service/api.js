@@ -9,7 +9,12 @@ export default {
     return axios.get(apiRoot + 'restaurant/order?pageSize=20&pageNumber=1')
   },
   postDish: function (item) {
-    axios.post(apiRoot + 'restaurant/category', item)
+    axios.post(apiRoot + 'restaurant/category', item,
+      { headers : {
+        'Access-Control-Allow-Origin':'*',
+        // 'Access-Control-Allow-Methods':'POST',
+        // 'Access-Control-Allow-Headers':'x-requested-with,content-type'
+      }})
       .then(function (response) {
         console.log(response)
       })
