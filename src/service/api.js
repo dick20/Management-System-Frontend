@@ -5,24 +5,22 @@ export default {
   getMenu: function (context) {
     return axios.get(apiRoot + 'restaurant/category')
   },
-  getOrder: function (context) {
-    return axios.get(apiRoot + 'restaurant/order?pageSize=20&pageNumber=1')
-  },
   postDish: function (item) {
-    axios.post(apiRoot + 'restaurant/category', item,
-      { headers : {
-        'Access-Control-Allow-Origin':'*',
+    axios.post(apiRoot + 'restaurant/category', item, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
         // 'Access-Control-Allow-Methods':'POST',
         // 'Access-Control-Allow-Headers':'x-requested-with,content-type'
-      }})
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      }
+    })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
   },
-  putDish:function (item) {
+  putDish: function (item) {
     axios.put(apiRoot + 'restaurant/dish/' + item.dishID, item)
       .then(function (response) {
         console.log(response)
@@ -31,7 +29,7 @@ export default {
         console.log(error)
       })
   },
-  deleteDish:function (dishID) {
+  deleteDish: function (dishID) {
     console.log(dishID)
     axios.delete(apiRoot + 'restaurant/dish/' + dishID)
       .then(function (response) {

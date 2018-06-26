@@ -3,13 +3,8 @@ import Router from 'vue-router'
 import Login from './sections/Login'
 import Dashboard from './sections/Dashboard'
 import About from './sections/About'
-<<<<<<< HEAD
-
-import Menu from './sections/menu/Menu'
-=======
 import Menu from './sections/Menu'
 import Order from './sections/Order'
->>>>>>> c8934cff29738623d226988fa169929b1a06321d
 
 Vue.use(Router)
 
@@ -48,11 +43,7 @@ import Auth from './service/auth.js'
 
 router.beforeEach(function (transition) {
   if (transition.to.auth && !Auth.isAuthenticated()) {
-<<<<<<< HEAD
-    transition.redirect('/login')
-=======
     transition.redirect('/menu')
->>>>>>> c8934cff29738623d226988fa169929b1a06321d
   } else {
     transition.next()
   }

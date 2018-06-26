@@ -138,19 +138,8 @@ export default {
         }
       })
     },
-<<<<<<< HEAD:src/sections/menu/components/AddItemPopup.vue
-    reset: function () {
-      this.name = ''
-      this.description = ''
-      this.price = null
-      this.image = ''
-      this.tags = CATEGORIES
-      this.selectedTags = mapValues(CATEGORIES, () => false)
-      this.deleteBtn = false
-=======
     deleteItem: function() {
       api.deleteDish(this.name)
->>>>>>> c8934cff29738623d226988fa169929b1a06321d:src/components/AddItemPopup.vue
     }
   }
 }
