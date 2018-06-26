@@ -8,7 +8,6 @@ export default {
     let user
     try {
       user = JSON.parse(window.localStorage.getItem('user'))
-      console.log('user ' + user)
     } catch (e) {
       console.log(e)
       window.localStorage.removeItem('user')
@@ -39,7 +38,6 @@ export default {
   },
   logout: function (context) {
     axios.delete(apiRoot + '/restaurant/session').then((res) => {
-      console.log(res)
       window.localStorage.removeItem('user')
       router.go('/login')
     })
