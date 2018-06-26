@@ -3,22 +3,18 @@ let apiRoot = 'http://111.230.31.38:8080/'
 
 export default {
   getMenu: function (context) {
-    axios.get(apiRoot + 'restaurant/category', { headers: { 'Access-Control-Allow-Origin': '*' } })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      }).then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
     return axios.get(apiRoot + 'restaurant/category')
   },
-  postMenu: function (item) {
-    axios.post(apiRoot + 'restaurant/category', {item})
+  getOrder: function (context) {
+    return axios.get(apiRoot + 'restaurant/order?pageSize=20&pageNumber=1')
+  },
+  postDish: function (item) {
+    axios.post(apiRoot + 'restaurant/category', item,
+      { headers : {
+        'Access-Control-Allow-Origin':'*',
+        // 'Access-Control-Allow-Methods':'POST',
+        // 'Access-Control-Allow-Headers':'x-requested-with,content-type'
+      }})
       .then(function (response) {
         console.log(response)
       })
@@ -26,8 +22,18 @@ export default {
         console.log(error)
       })
   },
-  putMenu: function (item) {
+  putDish:function (item) {
     axios.put(apiRoot + 'restaurant/dish/' + item.dishID, item)
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  },
+  deleteDish:function (dishID) {
+    console.log(dishID)
+    axios.delete(apiRoot + 'restaurant/dish/' + dishID)
       .then(function (response) {
         console.log(response)
       })

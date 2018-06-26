@@ -16,7 +16,8 @@ export default {
     return user
   },
   isAuthenticated: function () {
-    return window.localStorage.getItem('user') != null
+    // return window.localStorage.getItem('user') != null
+    return true
   },
   login (context, creds, redirect) {
     return axios.post(apiRoot + '/restaurant/session', creds).then((res) => {

@@ -3,7 +3,7 @@
     <div class="upload">
       <div class="upload_warp">
         <div class="upload_warp_left" @click="fileClick">
-          <img src="../../assets/upload.png">
+          <img src="../assets/upload.png">
         </div>
         <img :src="image" class="oriImage" v-if="imgNotChange">
         <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
@@ -13,7 +13,7 @@
               <div class="upload_warp_img_div_text">
                 {{item.file.name}}
               </div>
-              <img src="../../assets/del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
+              <img src="../assets/del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
             </div>
             <img :src="item.file.src">
           </div>
@@ -55,19 +55,15 @@
       fileList (fileList) {
         let files = fileList.files
         for (let i = 0; i < files.length; i++) {
-          // 判断是否为文件夹
           if (files[i].type !== '') {
             this.fileAdd(files[i])
           } else {
-            // 文件夹处理
             this.folders(fileList.items[i])
           }
         }
       },
-      // 文件夹处理
       folders (files) {
         let _this = this
-        // 判断是否为原生file
         if (files.kind) {
           files = files.webkitGetAsEntry()
         }
@@ -91,9 +87,7 @@
         this.imgNotChange = false
         if (this.limit !== undefined) this.limit--
         if (this.limit !== undefined && this.limit < 0) return
-        // 总大小
         this.size = this.size + file.size
-        // 判断是否为图片文件
         if (file.type.indexOf('image') === -1) {
           file.src = 'wenjian.png'
           this.imgList.push({
@@ -120,7 +114,7 @@
         }
       },
       fileDel (index) {
-        this.size = this.size - this.imgList[index].file.size  // 总大小
+        this.size = this.size - this.imgList[index].file.size
         this.imgList.splice(index, 1)
         if (this.imgList.length === 0) {
           this.imgNotChange = true
@@ -129,7 +123,7 @@
       },
       bytesToSize (bytes) {
         if (bytes === 0) return '0 B'
-        let k = 1000       // or 1024
+        let k = 1024
         let sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
         let i = Math.floor(Math.log(bytes) / Math.log(k))
         return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i]

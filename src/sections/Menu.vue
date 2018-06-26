@@ -1,34 +1,70 @@
-<template lang="jade">
-  .management-menu
-    .page-header
-      h1 Menu
-    .dishes-list
-      .category(v-for="category in categories")
-        h2 {{category.name}}
-        .dish(v-for="dish in category.foods")
-          .dish-name {{dish.name}}
-          .dish-description {{dish.description}}
-          .dish-price ￥ {{dish.price}}
-          .dish-image(style="background-image: url({{dish.image_url}})")
+<template>
+  <div class="menu-header">
+    <app-button primary={true} @click.native="toggleBtn()">新增菜品</app-button>
+  </div>
+
+  <div class="floating-window" v-if="itemPopupVisible">
+    <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:clickitem="clickitem" v-bind:deletebtn="deletebtn"></add-item-popup>
+  </div>
+
+  <div class="management-menu">
+    <div class="page-header">
+      <h1>Menu</h1>
+      <div class = "dish-list">
+        <div class = "category" v-for="category in categories">
+          <h2>{{category.name}}</h2>
+          <div class = "dish" v-for="dish in category.dish">
+            <div class = "dish-name">{{dish.name}}</div>
+            <div class="dish-description">{{dish.description.comment}}</div>
+            <div class="dish-price">￥ {{dish.price}}.00</div>
+            <div class="dish-image" style=" background-image: url({{dish.imageURL}})"></div>
+            <i class="iconfont icon-edit edit-icon" @click.native="editClick(dish)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
 import api from '../service/api.js'
-
+import { AddItemPopup, Button } from '../components'
+import Vue from 'vue'
 export default {
   name: 'Menu',
-
+  components: {
+    AppButton: Button,
+    AddItemPopup
+  },
   data: function () {
     return {
-      categories: []
+      itemPopupVisible: false,
+      categories: [],
+      deletebtn: false
     }
   },
-
+  methods: {
+    toggleBtn: function () {
+      this.itemPopupVisible = true
+      this.deletebtn = false
+    },
+    itempopupvisible: function () {
+      this.itemPopupVisible = false
+    },
+    editClick: function (item) {
+      this.deletebtn = true
+      this.itemPopupVisible = true
+      this.$nextTick(function () {
+        this.$children[1].editItem(item)
+      })
+    }
+  },
   ready: function () {
     api.getMenu(this).then((res) => {
-      console.log(res.data[0].name)
       if (res.status === 200) {
         this.$set('categories', res.data)
+        console.log(this.categories)
       }
     })
   }
@@ -37,34 +73,64 @@ export default {
 </script>
 
 <style scoped>
-.category {
-  width: 100%;
-  display: inline-block;
-}
+  .floating-window {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 480px;
+    background: #FAFAFA;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 2px;
+  }
+  .menu-header {
+    float: right;
+  }
 
-.dish {
-  width: 200px;
-  height: 200px;
-  background-color: #f0efef;
-  display: inline-block;
-  padding: 5px;
-  margin: 20px;
-}
+  .category {
+    width: 100%;
+    display: inline-block;
+  }
 
-.dish-name {
-  font-weight: bold;
-}
+  .dish {
+    width: 230px;
+    height: 230px;
+    background-color: #f0efef;
+    display: inline-block;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+  }
 
-.dish-description {
-  font-size: 10px;
-}
+  .dish-name {
+    font-weight: bold;
+    margin-left: 3px;
+    margin-top: 2px;
+  }
 
-.dish-price {
-  color: red
-}
+  .dish-description {
+    font-size: 10px;
+  }
 
-.dish-image {
-  height: 100px;
-  background-size: cover;
-}
+  .dish-price {
+    color: red;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .dish-image {
+    height: 150px;
+    background-size: cover;
+    border-radius: 10px;
+  }
+  .edit-icon {
+    float: right;
+    margin-top:-3px;
+    margin-right:5px;
+    color: #009dff;
+    cursor: pointer;
+  }
+  .dish:hover>.edit-icon {
+    visibility: visible;
+  }
 </style>
