@@ -1,5 +1,6 @@
 <template lang="jade">
-
+  h1 Order
+  hr
 </template>
 
 <script>
