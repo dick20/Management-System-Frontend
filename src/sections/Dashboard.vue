@@ -2,11 +2,11 @@
   h1 Dashboard
   .blocks
     .block
-      img(src='assets/image/restaurant1.jpg')
+      img(src='../assets/image/restaurant1.jpg')
     .block
-      img(src='assets/image/restaurant2.jpg')
+      img(src='../assets/image/restaurant2.jpg')
     .block
-      img(src='assets/image/restaurant3.jpg')
+      img(src='../assets/image/restaurant3.jpg')
 
 </template>
 
