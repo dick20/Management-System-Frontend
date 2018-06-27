@@ -67,6 +67,10 @@ export default {
     deletebtn: {
       type: Boolean,
       required: true
+    },
+    clickitem: {
+      type: Object,
+      required: true
     }
   },
   data: function () {
@@ -77,69 +81,66 @@ export default {
     console.log(d)
     return {
       name: '',
+      dishID: 0,
+      category: '',
       description: '',
       price: null,
       image: '',
       selectedTag: d,
-      item: {},
       deleteBtn: this.deletebtn
     }
   },
   methods: {
     toggleTag (tag) {
       Vue.set(this.selectedTag, tag, !this.selectedTag[tag])
-      this.item.category = tag
-      console.log(this.item.category)
+      this.category = tag
+//      console.log(this.category)
     },
     addItem: function () {
-      this.item.name = this.name
-      this.item.description = this.description
-      this.item.price = this.price
-      this.item.image = this.image
-      this.addMenuItem(this.item)
+      this.addMenuItem()
       this.dismiss()
     },
     dismiss: function () {
       this.$emit('itempopupvisible')
     },
-    addMenuItem: function (item) {
+    addMenuItem: function () {
       let json = {}
+      let that = this
       this.categories.filter(function (type) {
-        if (type.name === item.category) {
+        if (type.name === that.category) {
           json.CategoryID = type.CategoryID
         }
       })
-      json.description = []
-      json.description.comment = item.description
-      json.description.hot = true
-      json.description.monthlySales = 0
-      json.dishID = this.categories[json.CategoryID - 1].dish.length + 1
-      json.name = item.name
-      json.price = Number(item.price)
-      json.imageURL = item.image
-      console.log(json)
+      json.DishID = this.dishID
+      json.name = this.name
+      json.price = Number(this.price)
+      json.imageURL = this.image
+//      console.log(json)
       if (this.deletebtn === true) {
         api.putDish(json)
+        api.getMenu(this)
       } else {
         api.postDish(json)
       }
     },
     editItem: function (item) {
-      console.log(item)
+      console.log(this.clickitem)
       this.deleteBtn = true
       this.name = item.name
-      this.description = item.description.comment
+      this.dishID = item.dishID
       this.price = item.price
       this.image = item.imageURL
       let that = this
       this.categories.filter(function (type) {
         if (type.CategoryID === item.CategoryID) {
           that.toggleTag(type.name)
+          that.category = type.name
         }
       })
     },
-    deleteItem: function() {
-      api.deleteDish(this.name)
+    deleteItem: function () {
+      api.deleteDish(this.clickitem.dishID)
+      this.dismiss()
     }
   }
 }

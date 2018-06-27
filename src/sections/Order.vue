@@ -1,18 +1,4 @@
 <template lang="jade">
-  .management-menu
-    .page-header
-      h1 Order
-    .orders-list
-      .order(v-for="order in orders")
-        .order-id 订单{{order.OrderID}}
-        .order-table {{order.table}}
-        .order-dishes(v-for="dish in order.dish")
-          .dish-name {{dish.name}}
-          .dish-price {{dish.price}}
-        .order-requirment {{order.reauirement}}
-        .order-price {{order.price}}
-        .order-customerid {{}}
-        .order-time {{order.time}}
 
 </template>
 

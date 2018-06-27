@@ -9,8 +9,6 @@ export default {
     axios.post(apiRoot + 'restaurant/category', item, {
       headers: {
         'Access-Control-Allow-Origin': '*'
-        // 'Access-Control-Allow-Methods':'POST',
-        // 'Access-Control-Allow-Headers':'x-requested-with,content-type'
       }
     })
     .then(function (response) {
@@ -21,7 +19,11 @@ export default {
     })
   },
   putDish: function (item) {
-    axios.put(apiRoot + 'restaurant/dish/' + item.dishID, item)
+    axios.put(apiRoot + 'restaurant/dish/' + item.DishID.toString(), item, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(function (response) {
         console.log(response)
       })
@@ -31,7 +33,11 @@ export default {
   },
   deleteDish: function (dishID) {
     console.log(dishID)
-    axios.delete(apiRoot + 'restaurant/dish/' + dishID)
+    axios.delete(apiRoot + 'restaurant/dish/' + dishID.toString(), {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(function (response) {
         console.log(response)
       })
@@ -40,6 +46,9 @@ export default {
       })
   },
   getOrder: function (pageSize, pageNum) {
-    return axios.get(apiRoot + '/restaurant/order?pageSize=' + pageSize + '?pageNum=' + pageNum)
+    return axios.get(apiRoot + 'restaurant/order?pageSize=2&pageNumber=2', {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }})
   }
 }

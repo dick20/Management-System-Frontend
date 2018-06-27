@@ -4,7 +4,7 @@
   </div>
 
   <div class="floating-window" v-if="itemPopupVisible">
-    <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:clickitem="clickitem" v-bind:deletebtn="deletebtn"></add-item-popup>
+    <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:deletebtn="deletebtn" v-bind:clickitem="clickitem"></add-item-popup>
   </div>
 
   <div class="management-menu">
@@ -41,7 +41,8 @@ export default {
     return {
       itemPopupVisible: false,
       categories: [],
-      deletebtn: false
+      deletebtn: false,
+      clickitem: []
     }
   },
   methods: {
@@ -55,6 +56,8 @@ export default {
     editClick: function (item) {
       this.deletebtn = true
       this.itemPopupVisible = true
+      this.clickitem = item
+      console.log(this.clickitem)
       this.$nextTick(function () {
         this.$children[1].editItem(item)
       })

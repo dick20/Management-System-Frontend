@@ -43,7 +43,7 @@ import Auth from './service/auth.js'
 
 router.beforeEach(function (transition) {
   if (transition.to.auth && !Auth.isAuthenticated()) {
-    transition.redirect('/menu')
+    transition.redirect('/login')
   } else {
     transition.next()
   }

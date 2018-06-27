@@ -18,7 +18,7 @@ export default {
   border: none;
   outline: none;
   background: none;
-  color: #009dff;
+  color: #ffab1c;
 }
 
 .btn.primary {
