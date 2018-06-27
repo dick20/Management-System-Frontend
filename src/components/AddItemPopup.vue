@@ -81,10 +81,10 @@ export default {
     console.log(d)
     return {
       name: '',
-      dishID: 0,
+      dishId: 0,
       category: '',
       description: '',
-      price: null,
+      price: 0,
       image: '',
       selectedTag: d,
       deleteBtn: this.deletebtn
@@ -108,14 +108,14 @@ export default {
       let that = this
       this.categories.filter(function (type) {
         if (type.name === that.category) {
-          json.CategoryID = type.CategoryID
+          json.categoryId = type.categoryId
         }
       })
-      json.DishID = this.dishID
+      json.dishId = this.dishId
       json.name = this.name
       json.price = Number(this.price)
-      json.imageURL = this.image
-//      console.log(json)
+      json.imageUrl = this.image
+      console.log(json)
       if (this.deletebtn === true) {
         api.putDish(json)
         api.getMenu(this)
@@ -127,19 +127,19 @@ export default {
       console.log(this.clickitem)
       this.deleteBtn = true
       this.name = item.name
-      this.dishID = item.dishID
+      this.dishId = item.dishId
       this.price = item.price
-      this.image = item.imageURL
+      this.image = item.imageUrl
       let that = this
       this.categories.filter(function (type) {
-        if (type.CategoryID === item.CategoryID) {
+        if (type.categoryId === item.categoryId) {
           that.toggleTag(type.name)
           that.category = type.name
         }
       })
     },
     deleteItem: function () {
-      api.deleteDish(this.clickitem.dishID)
+      api.deleteDish(this.clickitem.dishId)
       this.dismiss()
     }
   }
