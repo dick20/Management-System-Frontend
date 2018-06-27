@@ -15,9 +15,8 @@
           <h2>{{category.name}}</h2>
           <div class = "dish" v-for="dish in category.dish">
             <div class = "dish-name">{{dish.name}}</div>
-            <div class="dish-description">{{dish.description.comment}}</div>
             <div class="dish-price">￥ {{dish.price}}.00</div>
-            <div class="dish-image" style=" background-image: url({{dish.imageURL}})"></div>
+            <div class="dish-image" style=" background-image: url({{dish.imageUrl}})"></div>
             <i class="iconfont icon-edit edit-icon" @click.native="editClick(dish)"></i>
           </div>
         </div>

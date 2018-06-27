@@ -19,7 +19,8 @@ export default {
     })
   },
   putDish: function (item) {
-    axios.put(apiRoot + 'restaurant/dish/' + item.DishID.toString(), item, {
+    console.log(apiRoot + 'restaurant/dish/' + item.dishId.toString())
+    axios.put(apiRoot + 'restaurant/dish/' + item.dishId.toString(), item, {
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
