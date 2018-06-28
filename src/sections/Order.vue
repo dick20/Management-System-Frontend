@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <h1>Order</h1>
   <div class = "order-list">
@@ -14,6 +15,11 @@
       <div class = "order-cookingStatus">{{order.cookingStatus}}</div>
     </div>
   </div>
+=======
+<template lang="jade">
+  h1 Order
+  hr
+>>>>>>> ec7d3efe254f49204ffa4dd586f5417c59e5a3cf
 </template>
 
 <script>

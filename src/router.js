@@ -5,6 +5,7 @@ import Dashboard from './sections/Dashboard'
 import About from './sections/About'
 import Menu from './sections/Menu'
 import Order from './sections/Order'
+import Recommendation from './sections/Recommendation'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ router.map({
   'order': {
     name: 'Order',
     component: Order,
+    auth: true
+  },
+  'recommendation': {
+    name: 'Recommendation',
+    component: Recommendation,
     auth: true
   },
   'about': {
