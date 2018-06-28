@@ -31,4 +31,26 @@ app.get('/restaurant/category', function (req, res) {
   request(options, callback)
 })
 
+app.put('/restaurant/dish/2', function (req, res) {
+  let url = apiRoot + '/restaurant/dish/2'
+  console.log('sending request to ' + url)
+
+  let options = {
+    headers: {},
+    url: url,
+    method: 'PUT',
+    json: true,
+    body: req.body
+  }
+
+  function callback (error, response, data) {
+    if (!error && response.statusCode === 200) {
+      console.log(data)
+      res.json(data)
+    }
+  }
+
+  request(options, callback)
+})
+
 app.listen(3000, () => console.log('listen on port 3000'))
