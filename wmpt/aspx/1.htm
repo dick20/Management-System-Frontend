@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+     <script src="../Scripts/easyui/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="../Scripts/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+        <script src="../Scripts/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+        <script src="../Scripts/ExportExcel.js" type="text/javascript"></script>
+        <link href="../Scripts/easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+        <link href="../Scripts/easyui/themes/icon.css" rel="stylesheet" type="text/css" />
+        <link href="../Styles/templet.css" rel="stylesheet" type="text/css" />
+        <script type="text/jscript">
+            var f = 1;   
+        function fg() {
+            // $("#cc").combobox('enable');
+            if (f == 1)
+            { $('#cc').combobox('disable', 'true'); f = -f; }
+            else
+            { $('#cc').combobox('disable', 'false');f = -f;}        }</script>
+</head>
+<body>
+
+<select id="cc" class="easyui-combobox" name="dept" style="width:200px;">
+ <option value="aa">aitem1</option>
+<option>bitem2</option>
+ <option>bitem3</option>
+<option>ditem4</option> <option>eitem5</option></select><button onclick="fg()">ok</button>
+
+
+</body>
+</html>

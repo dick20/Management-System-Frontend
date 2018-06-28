@@ -1,0 +1,303 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Collections;
+using System.Data;
+using Maticsoft.BLL;
+namespace Common.Templet
+{
+    public struct DataSourceList
+    {
+        public string DSName;
+        public string PDSName;
+    }
+   
+    /// <summary>
+    ///tplhelp 的摘要说明
+    /// </summary>
+    public class tplhelp
+    {
+        DataSourceList[] mDataSourceLists = new DataSourceList[18];
+        ArrayList mOpenDataSource = new ArrayList();
+        string myear;
+        string mCountryCode;
+        string mQuarter;
+        public tplhelp(string year, string CountryCode, string Quarter)
+        {
+            //
+            //TODO: 在此处添加构造函数逻辑
+
+            //
+            myear = year;
+            mCountryCode = CountryCode;
+            mQuarter = Quarter;
+            initial();
+        }
+        private void initial()
+        {
+            mDataSourceLists[0].DSName = "CPlanTBL_Main";
+            mDataSourceLists[0].PDSName = "";
+            mDataSourceLists[1].DSName = "CPlanTBL_Sub";
+            mDataSourceLists[1].PDSName = "CPlanTBL_Main";
+
+            mDataSourceLists[2].DSName = "PPlanTBL_Main";
+            mDataSourceLists[2].PDSName = "";
+            mDataSourceLists[3].DSName = "PPlanTBL_Sub";
+            mDataSourceLists[3].PDSName = "PPlanTBL_Main";
+
+            mDataSourceLists[4].DSName = "CCompleteTBL_Main";
+            mDataSourceLists[4].PDSName = "";
+            mDataSourceLists[5].DSName = "CCompleteTBL_Sub";
+            mDataSourceLists[5].PDSName = "CCompleteTBL_Main";
+
+            mDataSourceLists[6].DSName = "PCompleteTBL_Main";
+            mDataSourceLists[6].PDSName = "";
+            mDataSourceLists[7].DSName = "PCompleteTBL_Sub";
+            mDataSourceLists[7].PDSName = "PCompleteTBL_Main";
+
+            mDataSourceLists[8].DSName = "CQuarterTBL_Main";
+            mDataSourceLists[8].PDSName = "";
+            mDataSourceLists[9].DSName = "CQuarterTBL_Sub";
+            mDataSourceLists[9].PDSName = "CQuarterTBL_Main";
+
+            mDataSourceLists[10].DSName = "PQuarterTBL_Main";
+            mDataSourceLists[10].PDSName = "";
+            mDataSourceLists[11].DSName = "PQuarterTBL_Sub";
+            mDataSourceLists[11].PDSName = "PQuarterTBL_Main";
+
+            mDataSourceLists[12].DSName = "CPLanFileTBL_Main";
+            mDataSourceLists[12].PDSName = "";
+            mDataSourceLists[13].DSName = "CPLanFileTBL_Sub";
+            mDataSourceLists[13].PDSName = "CPLanFileTBL_Main";
+
+            mDataSourceLists[14].DSName = "CPLanFileUpTBL_Main";
+            mDataSourceLists[14].PDSName = "";
+            mDataSourceLists[15].DSName = "CPLanFileUpTBL_Sub";
+            mDataSourceLists[15].PDSName = "CPLanFileUpTBL_Main";
+
+            mDataSourceLists[16].DSName = "PCompleteUpTBL_Main";
+            mDataSourceLists[16].PDSName = "";
+            mDataSourceLists[17].DSName = "PCompleteUpTBL_Sub";
+            mDataSourceLists[17].PDSName = "PCompleteUpTBL_Main";
+
+
+        
+        }
+        private DataTable GetTable(string DSName)
+        {
+            DataTable mtable = null;
+            int i;
+            for (i = 0; i < mOpenDataSource.Count; i++)
+            {
+                if (DSName.ToUpper() == ((DataTable)mOpenDataSource[i]).TableName.ToUpper())
+                {
+                    mtable = (DataTable)mOpenDataSource[i];
+                    break;
+                }
+            }
+            return mtable;
+        }
+        public DataTable GetDataSourceByName(string DSName)
+        {
+            DataTable mtable = null;
+            DataTable pTable = null;
+            int i;
+            for (i = 0; i < mOpenDataSource.Count; i++)
+            {
+                if (DSName.ToUpper() == ((DataTable)mOpenDataSource[i]).TableName.ToUpper())
+                {
+                    mtable = (DataTable)mOpenDataSource[i];
+                    break;
+                }
+            }
+            if (mtable == null)
+            {   int j=-1;
+            int FPkey = -1;
+                for (i = 0; i < mDataSourceLists.Length; i++)
+                {
+                    if (DSName.ToUpper() == mDataSourceLists[i].DSName.ToUpper())
+                    {
+                        j = i;
+                        break;
+                    }
+                }
+                if (j != -1)
+                {
+                    if (mDataSourceLists[j].PDSName.Trim()!= "")
+                    {
+                        pTable = GetTable(mDataSourceLists[j].PDSName);
+                        if (pTable == null)
+                        {
+                            pTable = OpenPDSByName(mDataSourceLists[j].PDSName);
+                            mOpenDataSource.Add(pTable);
+                        }
+                        if (pTable.Rows.Count > 0)
+                        {
+                            FPkey = int.Parse(pTable.Rows[0]["RecordID"].ToString());
+                        }
+                        else
+                        {
+                            FPkey = -1;
+                        }
+                        pTable = OpenDSByName(mDataSourceLists[j].DSName,FPkey);
+                     
+                    }
+                    else
+                    {
+                        pTable = OpenPDSByName(mDataSourceLists[j].DSName);
+                     
+                    }
+                    mOpenDataSource.Add(pTable);
+                    mtable = pTable;
+                }
+            }
+           return mtable;
+        }
+        private DataTable OpenPDSByName(string DSName)
+        {
+            DataTable mTable = null;
+            string mLyear = "";
+            string mCond=" Year='"+myear+"' and CountryCode='"+mCountryCode+"'";
+            switch (DSName)
+            {
+                case "CPlanTBL_Main":
+                    business_Main_PlanData mbusiness_Main_PlanData = new business_Main_PlanData();
+                    mTable = mbusiness_Main_PlanData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "PPlanTBL_Main":
+                    mLyear = (int.Parse(myear) - 1).ToString();
+                    mCond = " Year='" + mLyear + "' and CountryCode='" + mCountryCode + "'";
+                    business_Main_PlanData mLbusiness_Main_PlanData = new business_Main_PlanData();
+                    mTable = mLbusiness_Main_PlanData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+
+                    break;
+                case "CCompleteTBL_Main":
+        
+                    business_Main_YearData mLbusiness_Main_YearData = new business_Main_YearData();
+                    mTable = mLbusiness_Main_YearData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+
+                case "PCompleteTBL_Main":
+                    mLyear = (int.Parse(myear) - 1).ToString();
+                    mCond = " Year='" + mLyear + "' and CountryCode='" + mCountryCode + "'";
+                    business_Main_YearData mPbusiness_Main_YearData = new business_Main_YearData();
+                    mTable = mPbusiness_Main_YearData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "CQuarterTBL_Main":
+                    mCond = " Year=" + Int32.Parse(myear) + "  and  Quarter=" + mQuarter+ " and CountryCode='" + mCountryCode + "'";
+                    business_Main_QuarterData mbusiness_Main_QuarterData = new business_Main_QuarterData();
+                    mTable = mbusiness_Main_QuarterData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "PQuarterTBL_Main":
+                    mLyear = (int.Parse(myear) - 1).ToString();
+                    mCond = " Year='" + mLyear + "'  and  Quarter='" + mQuarter + "' and CountryCode='" + mCountryCode + "'";
+                    business_Main_QuarterData mPbusiness_Main_QuarterData = new business_Main_QuarterData();
+                    mTable = mPbusiness_Main_QuarterData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;            
+                case "CPLanFileTBL_Main":
+
+                    business_Main_PlanFile mbusiness_Main_PlanFile = new business_Main_PlanFile();
+                    mTable = mbusiness_Main_PlanFile.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+               
+                case "CPLanFileUpTBL_Main":
+
+                   business_Main_PlanFile_up mbusiness_Main_PlanFile_up =new business_Main_PlanFile_up();
+                   mTable = mbusiness_Main_PlanFile_up.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+
+                case "PCompleteUpTBL_Main":
+                    mLyear = (int.Parse(myear) - 1).ToString();
+                    mCond = " Year='" + mLyear + "' and CountryCode='" + mCountryCode + "'";
+                    business_Main_YearData_up mbusiness_Main_YearData_up=new business_Main_YearData_up();
+                    mTable = mbusiness_Main_YearData_up.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+
+
+
+                default:
+                    break;
+                   
+            }
+
+            return mTable;
+        }
+
+        private DataTable OpenDSByName(string DSName,int PFKey)
+        {
+            DataTable mTable = null;
+            string mLyear = "";
+            string mCond = " FartherID=" + PFKey.ToString();
+            switch (DSName)
+            {
+                case "CPlanTBL_Sub":
+                    business_Sub_PlanData mbusiness_Sub_PlanData = new business_Sub_PlanData();
+                    mTable = mbusiness_Sub_PlanData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "PPlanTBL_Sub":
+                    business_Sub_PlanData mPbusiness_Sub_PlanData = new business_Sub_PlanData();
+                    mTable = mPbusiness_Sub_PlanData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+
+                    break;
+                case "CCompleteTBL_Sub":
+                    business_Sub_YearData mbusiness_Sub_YearData = new business_Sub_YearData();
+                    mTable = mbusiness_Sub_YearData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "PCompleteTBL_Sub":
+                    business_Sub_YearData mPbusiness_Sub_YearData = new business_Sub_YearData();
+                    mTable = mPbusiness_Sub_YearData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "CQuarterTBL_Sub":
+                    business_Sub_QuarterData mbusiness_Sub_QuarterData = new business_Sub_QuarterData();
+                    mTable = mbusiness_Sub_QuarterData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "PQuarterTBL_Sub":
+                    business_Sub_QuarterData mPbusiness_Sub_QuarterData = new business_Sub_QuarterData();
+                    mTable = mPbusiness_Sub_QuarterData.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+                case "CPLanFileTBL_Sub":
+                    business_Sub_PlanFile mbusiness_Sub_PlanFile = new business_Sub_PlanFile();
+                    mTable = mbusiness_Sub_PlanFile.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+
+                case "CPLanFileUpTBL_Sub":
+
+                    business_Sub_PlanFile_up mbusiness_Sub_PlanFile_up = new business_Sub_PlanFile_up();
+                    mTable = mbusiness_Sub_PlanFile_up.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+
+                case "PCompleteUpTBL_Sub":
+                    business_Sub_YearData_up mbusiness_Sub_YearData_up=new business_Sub_YearData_up();
+                    mTable = mbusiness_Sub_YearData_up.GetList(mCond).Tables[0];
+                    mTable.TableName = DSName;
+                    break;
+
+
+                default:
+                    break;
+
+            }
+
+            return mTable;
+        }
+
+    }
+}

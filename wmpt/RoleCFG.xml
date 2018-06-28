@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <File RoleStr="0,1">index.aspx</File>
+  <File RoleStr="0,1">menuList.aspx</File>
+  <File RoleStr="0,1">shenbao.aspx</File>
+  <File RoleStr="0,1">orderList.aspx</File>
+  <File RoleStr="0,1">order.aspx</File>
+  <File RoleStr="0">userList.aspx</File>
+</Root>

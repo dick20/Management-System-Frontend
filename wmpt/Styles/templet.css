@@ -1,0 +1,134 @@
+﻿.baobiao
+        {
+            border-collapse: collapse;
+            border: none;
+            font-size:12px;
+            width:90%;
+            margin:0 auto;
+        }
+ .baobiao      td
+        { 
+            
+            border:1px  solid  #8EB6E1 ;
+			padding:5px ;
+			text-align:left;
+			
+        }
+        
+ .baobiao  tr:nth-child(even) td
+  {
+ /* background-color:#cccccc; */
+
+ }
+ .search
+{
+font-size:14px;
+}
+.Remark
+{
+     width:90%;   }
+ fieldset
+ {  width:90%;    
+     margin-top:10px;     
+     border:1px solid #ccc;}
+  fieldset legend
+ {
+    font-weight:bold;
+     color:Blue;
+     }
+
+ .bt{text-align:center; margin:10px auto  15px  auto; font-size:14px; font-weight:700; color:Blue}
+.submit{ margin:10px auto; text-align:center; width:90%;}
+.btn{ border:1px solid #ccc}
+.remark{ text-align:left;
+         
+         
+         }
+.Remark
+{ 
+  text-align:center;
+  font-size:13px;  
+  margin: 10px auto;  
+    }
+    fieldset{ text-align:left; 
+                width:90%;            
+              }
+.td_left{ text-align:left;}
+.table_colum{ font-weight:600;}
+.bk3
+{border-bottom: 1px solid black; 
+  text-align   :center; 
+  background-color   :White;
+    border-left-style: none;
+    border-left-color: inherit;
+    border-left-width: 0;
+    border-right-style: none;
+    border-right-color: inherit;
+    border-right-width: 0;
+    border-top-style: none;
+    border-top-color: inherit;
+    border-top-width: 0;
+    width:150px;}
+    .remark
+    {
+        margin:10px ;
+        font-size:13px;
+        padding:5px 0;
+        }
+             .keyword  td
+        {         font-size:14px;}
+        
+        .divHide
+        { display:none;
+          width:90%;
+            }
+             .divHide td
+             {
+                 }
+ .mDiv
+ { width:100%;}
+ .stat
+ { font-size:14px;
+   margin:5px;
+   padding:5px;
+     }
+     .search
+     { margin:5px;
+       font-size:13px;
+       text-align:left;
+         }
+   .bt1
+  {
+    font-size:13px;
+    font-weight:bold;
+    background-color:#eae6e7;
+    line-height:2;
+   
+             }
+ .Hidtab
+ {
+     width:97%; margin:5px auto;
+     }
+     select
+     {
+         width:120px;
+         }
+.tab_wz
+{
+    margin:5px auto;
+    text-align:left;
+    padding:5px;
+    }
+    .tab_wz td
+    {
+        text-align:left;
+        }
+#div_wz
+{ width:100%;
+  text-align:center;
+   margin:0 auto;
+  display:none;
+  }    
+   #tab2    td
+   {
+       text-align:center;}
