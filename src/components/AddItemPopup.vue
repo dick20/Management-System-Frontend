@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { Button, ImageUploader, ImageUpload, CATEGORIES } from '.'
+import { Button, ImageUpload } from '.'
 import Vue from 'vue'
 import mapValues from 'lodash/mapValues'
 import api from '../service/api.js'
@@ -56,7 +56,6 @@ import api from '../service/api.js'
 export default {
   components: {
     AppButton: Button,
-    ImageUploader,
     ImageUpload
   },
   props: {
@@ -78,7 +77,6 @@ export default {
     this.categories.filter(function (type) {
       d[type.name] = false
     })
-    console.log(d)
     return {
       name: '',
       dishId: 0,
@@ -94,7 +92,6 @@ export default {
     toggleTag (tag) {
       Vue.set(this.selectedTag, tag, !this.selectedTag[tag])
       this.category = tag
-//      console.log(this.category)
     },
     addItem: function () {
       this.addMenuItem()
@@ -108,31 +105,36 @@ export default {
       let that = this
       this.categories.filter(function (type) {
         if (type.name === that.category) {
-          json.categoryId = type.categoryId
+          json.categoryId = Number(type.categoryId)
         }
       })
-      json.dishId = this.dishId
+      json.dishId = Number(this.dishId)
       json.name = this.name
       json.price = Number(this.price)
       json.imageUrl = this.image
-      console.log(json)
-      if (this.deletebtn === true) {
-        api.putDish(json)
-        api.getMenu(this)
-      } else {
-        api.postDish(json)
+      let json_ = {
+        'dishId': this.dishId,
+        'name': this.name,
+        'categoryId': json.categoryId,
+        'imageUrl': this.image,
+        'price': Number(this.price)
       }
+      console.log(json_)
+      if (this.deletebtn === true) {
+        api.putDish(json_)
+      } else {
+        api.postDish(json_)
+      }
+      this.$emit('updatemenu')
     },
-    editItem: function (item) {
-      console.log(this.clickitem)
-      this.deleteBtn = true
-      this.name = item.name
-      this.dishId = item.dishId
-      this.price = item.price
-      this.image = item.imageUrl
+    editItem: function () {
+      this.name = this.clickitem.name
+      this.dishId = this.clickitem.dishId
+      this.price = this.clickitem.price
+      this.image = this.clickitem.imageUrl
       let that = this
       this.categories.filter(function (type) {
-        if (type.categoryId === item.categoryId) {
+        if (type.categoryId === that.clickitem.categoryId) {
           that.toggleTag(type.name)
           that.category = type.name
         }
@@ -141,6 +143,7 @@ export default {
     deleteItem: function () {
       api.deleteDish(this.clickitem.dishId)
       this.dismiss()
+//      this.$emit('updatemenu')
     }
   }
 }
