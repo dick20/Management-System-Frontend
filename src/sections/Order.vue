@@ -1,6 +1,25 @@
+<<<<<<< HEAD
+<template>
+  <h1>Order</h1>
+  <div class = "order-list">
+    <div class = "order" v-for="order in orders">
+      <div class = "order-orderId">{{order.orderId}}</div>
+      <div class = "order-table">{{order.table}}</div>
+      <div class = "dish" v-for="dish in order.dish">
+        <div class = "dish-name">{{dish.name}}</div>
+      </div>
+      <div class = "order-requirement-description">{{order.requirement.description}}</div>
+      <div class = "order-totalPrice">{{order.totalPrice}}</div>
+      <div class = "order-time">{{order.time}}</div>
+      <div class = "order-paymentStatus">{{order.paymentStatus}}</div>
+      <div class = "order-cookingStatus">{{order.cookingStatus}}</div>
+    </div>
+  </div>
+=======
 <template lang="jade">
   h1 Order
   hr
+>>>>>>> ec7d3efe254f49204ffa4dd586f5417c59e5a3cf
 </template>
 
 <script>
@@ -24,29 +43,40 @@
 </script>
 
 <style scoped>
-  .category {
-    width: 100%;
-    display: inline-block;
+  .order-list {
+
+  }
+  .order {
+
+  }
+  .order-orderId {
+
+  }
+  .order-table {
+
   }
   .dish {
-    width: 200px;
-    height: 200px;
-    background-color: #f0efef;
-    display: inline-block;
-    padding: 5px;
-    margin: 20px;
+
   }
   .dish-name {
-    font-weight: bold;
+
   }
-  .dish-description {
-    font-size: 10px;
+  .order-requirement-number {
+
   }
-  .dish-price {
-    color: red
+  .order-requirement-description {
+
   }
-  .dish-image {
-    height: 100px;
-    background-size: cover;
+  .order-totalPrice {
+
+  }
+  .order-time {
+
+  }
+  .order-paymentStatus {
+
+  }
+  .order-cookingStatus {
+
   }
 </style>

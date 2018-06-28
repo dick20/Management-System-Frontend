@@ -6,17 +6,17 @@ export default {
     return axios.get(apiRoot + 'restaurant/category')
   },
   postDish: function (item) {
-    axios.post(apiRoot + 'restaurant/category', item, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
-    .then(function (response) {
-      console.log(response)
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+    // axios.post(apiRoot + 'restaurant/category', item, {
+    //   headers: {
+    //     'Access-Control-Allow-Origin': '*'
+    //   }
+    // })
+    // .then(function (response) {
+    //   console.log(response)
+    // })
+    // .catch(function (error) {
+    //   console.log(error)
+    // })
   },
   putDish: function (item) {
     console.log(apiRoot + 'restaurant/dish/' + item.dishId.toString())
@@ -34,7 +34,7 @@ export default {
   },
   deleteDish: function (dishID) {
     console.log(dishID)
-    axios.delete(apiRoot + 'restaurant/dish/' + dishID.toString(), {
+    axios.delete(apiRoot + 'restaurant/dish/' + dishID, {
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
@@ -47,7 +47,7 @@ export default {
     })
   },
   getOrder: function (pageSize, pageNum) {
-    return axios.get(apiRoot + 'restaurant/order?pageSize=2&pageNumber=2', {
+    return axios.get(apiRoot + 'restaurant/order?pageSize=5&pageNumber=2', {
       headers: {
         'Access-Control-Allow-Origin': '*'
       }

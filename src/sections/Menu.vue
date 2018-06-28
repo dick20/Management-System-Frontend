@@ -4,7 +4,8 @@
   </div>
 
   <div class="floating-window" v-if="itemPopupVisible">
-    <add-item-popup @itempopupvisible="itempopupvisible()" v-bind:categories="categories" v-bind:deletebtn="deletebtn" v-bind:clickitem="clickitem"></add-item-popup>
+    <add-item-popup @itempopupvisible="itempopupvisible()" @updatemenu="updatemenu()"
+                    v-bind:categories="categories" v-bind:deletebtn="deletebtn" v-bind:clickitem="clickitem"></add-item-popup>
   </div>
 
   <div class="management-menu">
@@ -16,7 +17,7 @@
           <div class = "dish" v-for="dish in category.dish">
             <div class = "dish-name">{{dish.name}}</div>
             <div class="dish-price">￥ {{dish.price}}.00</div>
-            <div class="dish-image" style=" background-image: url({{dish.imageUrl}})"></div>
+            <div class="dish-image" v-bind:style=" background-image: url({{dish.imageUrl}})"></div>
             <i class="iconfont icon-edit edit-icon" @click.native="editClick(dish)"></i>
           </div>
         </div>
@@ -58,19 +59,21 @@ export default {
       this.clickitem = item
       console.log(this.clickitem)
       this.$nextTick(function () {
-        this.$children[1].editItem(item)
+        this.$children[1].editItem()
+      })
+    },
+    updatemenu: function () {
+      api.getMenu(this).then((res) => {
+        if (res.status === 200) {
+          this.$set('categories', res.data)
+          console.log(this.categories)
+        }
       })
     }
   },
   ready: function () {
-    api.getMenu(this).then((res) => {
-      if (res.status === 200) {
-        this.$set('categories', res.data)
-        console.log(this.categories)
-      }
-    })
+    this.updatemenu()
   }
-
 }
 </script>
 
@@ -108,10 +111,6 @@ export default {
     font-weight: bold;
     margin-left: 3px;
     margin-top: 2px;
-  }
-
-  .dish-description {
-    font-size: 10px;
   }
 
   .dish-price {
