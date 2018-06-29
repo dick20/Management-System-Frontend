@@ -128,7 +128,7 @@ export default {
       } else {
         api.postDish(json_)
       }
-      // this.$emit('updatemenu')
+      this.$emit('updatemenu')
     },
     editItem: function () {
       this.name = this.clickitem.name
@@ -146,7 +146,7 @@ export default {
     deleteItem: function () {
       api.deleteDish(this.clickitem.dishId)
       this.dismiss()
-//      this.$emit('updatemenu')
+      this.$emit('updatemenu')
     }
   }
 }
