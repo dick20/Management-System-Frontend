@@ -7,8 +7,6 @@
     li
       a(v-link="{ path: '/menu' }") 菜品
     li
-      a(v-link="{ path: '/order' }") 订单
-    li
       a(v-link="{ path: '/recommendation' }") 推荐
     li
       a(v-link="{ path: '/about' }") 关于我们
