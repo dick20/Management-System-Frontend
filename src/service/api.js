@@ -37,5 +37,15 @@ export default {
   },
   getRecommendation: function () {
     return axios.get('/api/restaurant/recommendation')
+  },
+  updateRecommendation: function (item) {
+    console.log(item)
+    axios.post('/api/restaurant/recommendation', item)
+    .then(function (res) {
+      console.log(res)
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
   }
 }
