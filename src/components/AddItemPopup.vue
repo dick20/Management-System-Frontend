@@ -89,6 +89,9 @@ export default {
     }
   },
   methods: {
+    sleep (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
     toggleTag (tag) {
       Vue.set(this.selectedTag, tag, !this.selectedTag[tag])
       this.category = tag
@@ -119,13 +122,13 @@ export default {
         'imageUrl': this.image,
         'price': Number(this.price)
       }
-      console.log(json_)
+      // console.log(json_)
       if (this.deletebtn === true) {
         api.putDish(json_)
       } else {
         api.postDish(json_)
       }
-      this.$emit('updatemenu')
+      // this.$emit('updatemenu')
     },
     editItem: function () {
       this.name = this.clickitem.name

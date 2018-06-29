@@ -17,7 +17,7 @@
           <div class = "dish" v-for="dish in category.dish">
             <div class = "dish-name">{{dish.name}}</div>
             <div class="dish-price">￥ {{dish.price}}.00</div>
-            <div class="dish-image" v-bind:style=" background-image: url({{dish.imageUrl}})"></div>
+            <!-- <div class="dish-image" style=" background-image: url({{dish.imageUrl}})"></div> -->
             <i class="iconfont icon-edit edit-icon" @click.native="editClick(dish)"></i>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default {
       this.deletebtn = true
       this.itemPopupVisible = true
       this.clickitem = item
-      console.log(this.clickitem)
+      // console.log(this.clickitem)
       this.$nextTick(function () {
         this.$children[1].editItem()
       })
@@ -66,7 +66,7 @@ export default {
       api.getMenu(this).then((res) => {
         if (res.status === 200) {
           this.$set('categories', res.data)
-          console.log(this.categories)
+          // console.log(this.categories)
         }
       })
     }

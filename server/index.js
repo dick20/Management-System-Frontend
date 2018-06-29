@@ -1,8 +1,18 @@
 const express = require('express')
-const app = express()
 const request = require('request')
+const app = express()
+const qs = require('qs')
 
 const apiRoot = 'http://111.230.31.38:8080'
+
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
+  res.header('X-Powered-By', ' 3.2.1')
+  res.header('Content-Type', 'application/json')
+  next()
+})
 
 // root test
 app.get('/', function (req, res) {
@@ -11,7 +21,6 @@ app.get('/', function (req, res) {
 
 app.get('/restaurant/category', function (req, res) {
   let url = apiRoot + '/restaurant/category'
-  console.log('sending request to ' + url)
 
   let options = {
     headers: {},
@@ -23,7 +32,6 @@ app.get('/restaurant/category', function (req, res) {
 
   function callback (error, response, data) {
     if (!error && response.statusCode === 200) {
-      console.log(data)
       res.json(data)
     }
   }
@@ -31,19 +39,22 @@ app.get('/restaurant/category', function (req, res) {
   request(options, callback)
 })
 
-app.put('/restaurant/dish/2', function (req, res) {
-  let url = apiRoot + '/restaurant/dish/2'
-  console.log('sending request to ' + url)
+app.put('/restaurant/dish/:dishId/:other', function (req, res) {
+  let url = apiRoot + '/restaurant/dish/' + req.params.dishId
+  console.log('PUT', url)
+  let bodystring = req.params.other
+  console.log(req.headers)
 
   let options = {
-    headers: {},
+    headers: req.headers,
     url: url,
     method: 'PUT',
     json: true,
-    body: req.body
+    body: qs.parse(bodystring)
   }
 
   function callback (error, response, data) {
+    // console.log(response)
     if (!error && response.statusCode === 200) {
       console.log(data)
       res.json(data)

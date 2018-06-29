@@ -1,30 +1,23 @@
 import axios from 'axios'
-let apiRoot = 'http://111.230.31.38:8080/'
+import qs from 'qs'
+// let apiRoot = 'http://111.230.31.38:8080/'
+let apiRoot = 'http://localhost:3000/'
 
 export default {
   getMenu: function () {
-    return axios.get(apiRoot + 'restaurant/category')
+    return axios.get('/api/restaurant/category')
   },
   postDish: function (item) {
-    // axios.post(apiRoot + 'restaurant/category', item, {
-    //   headers: {
-    //     'Access-Control-Allow-Origin': '*'
-    //   }
-    // })
-    // .then(function (response) {
-    //   console.log(response)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
+    axios.post('/api/restaurant/category', item)
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
   },
   putDish: function (item) {
-    console.log(apiRoot + 'restaurant/dish/' + item.dishId.toString())
-    axios.put(apiRoot + 'restaurant/dish/' + item.dishId.toString(), item, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
+    axios.put('/api/restaurant/dish/' + item.dishId, item)
     .then(function (response) {
       console.log(response)
     })
