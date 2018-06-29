@@ -33,15 +33,20 @@
 
     .recoommendation_list
       .recommendation(v-for="recommendation in recommendation_list")
+        hr
         h2 {{ recommendation.title }}
         p {{ recommendation.tag }}
-        .recommendation-image(style="background: url({{recommendation.image}})")
+        // TODO: fix image
+        .image
+          .recommendation-image(style="background-image: url({{recommendation.image}})")
         .detail(v-for="detail in recommendation.details")
           .detail-description {{ detail.description }}
           .detail-dish
-            .detail-dish-name {{detail.dish.name}}
-            .detail-dish-price ￥ {{detail.dish.price}}
-            .dish-image(style="background: url({{detail.dish.imageUrl}})")
+            .detail-dish-text
+              .detail-dish-name {{detail.dish.name}}
+              .detail-dish-price ￥ {{detail.dish.price}}
+            // TODO: fix imageURL capital
+            .dish-image(style="background-image: url({{detail.dish.imageURL}})")
 
 
 </template>
@@ -60,7 +65,8 @@ export default {
 
   ready: function () {
     api.getRecommendation().then((res) => {
-      this.$set('recommendation_list', res.data.data)
+      console.log(res.data)
+      this.$set('recommendation_list', res.data)
     })
   }
 
@@ -71,12 +77,15 @@ export default {
 
 .new_recommendation {
   margin: 30px;
+
 }
 
 .recommendation-image {
-  width: 300px;
   height: 300px;
-  background-size: contain;
+  width: 300px;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .detail {
@@ -89,7 +98,12 @@ export default {
   margin-right: auto;
   margin-top: 10px;
   width: 50%;
-  background: lightgray;
+  height: 150px;
+  display: inline-block;
+}
+
+.detail-dish-text {
+  float: left;
 }
 
 .detail-dish-name {
@@ -97,8 +111,8 @@ export default {
 }
 
 .dish-image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-size: cover;
   border-radius: 5%;
 }

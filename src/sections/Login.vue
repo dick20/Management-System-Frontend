@@ -19,13 +19,6 @@
             input#inputPassword3.form-control(type='password', placeholder='Password', v-model='password')
         .form-group
           .col-sm-offset-2.col-sm-10
-            .checkbox
-              label
-                input(type='checkbox', v-model='remember')
-                |  Remember me
-              br
-        .form-group
-          .col-sm-offset-2.col-sm-10
             button.btn.btn-default(type='button', v-on:click='login(phone, password)') Sign in
 </template>
 

@@ -1,8 +1,6 @@
 import router from '../router.js'
 import axios from 'axios'
 
-let apiRoot = 'http://111.230.31.38:8080'
-
 export default {
   getUser: function () {
     let user
@@ -16,11 +14,10 @@ export default {
     return user
   },
   isAuthenticated: function () {
-    // return window.localStorage.getItem('user') != null
-    return true
+    return window.localStorage.getItem('user') != null
   },
   login (context, creds, redirect) {
-    return axios.post(apiRoot + '/restaurant/session', creds).then((res) => {
+    return axios.post('/api/restaurant/session', creds).then((res) => {
       let user = {}
       if (res.status === 200) {
         user.data = res.data
@@ -38,7 +35,7 @@ export default {
     })
   },
   logout: function (context) {
-    axios.delete(apiRoot + '/restaurant/session').then((res) => {
+    axios.delete('/api/restaurant/session').then((res) => {
       window.localStorage.removeItem('user')
       router.go('/login')
     })
