@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 import Login from './sections/Login'
-
 import Dashboard from './sections/Dashboard'
-import MachineDetail from './sections/MachineDetail'
-
+import About from './sections/About'
 import Menu from './sections/Menu'
+import Order from './sections/Order'
+import Recommendation from './sections/Recommendation'
 
 Vue.use(Router)
 
@@ -25,9 +24,19 @@ router.map({
     component: Menu,
     auth: true
   },
-  'machine/:machineId': {
-    name: 'MachineDetail',
-    component: MachineDetail,
+  'order': {
+    name: 'Order',
+    component: Order,
+    auth: true
+  },
+  'recommendation': {
+    name: 'Recommendation',
+    component: Recommendation,
+    auth: true
+  },
+  'about': {
+    name: 'About',
+    component: About,
     auth: true
   },
   'login': {
@@ -40,8 +49,7 @@ import Auth from './service/auth.js'
 
 router.beforeEach(function (transition) {
   if (transition.to.auth && !Auth.isAuthenticated()) {
-    transition.next()
-    // transition.redirect('/login')
+    transition.redirect('/login')
   } else {
     transition.next()
   }

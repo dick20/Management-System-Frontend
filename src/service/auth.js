@@ -1,7 +1,9 @@
 import router from '../router.js'
+import axios from 'axios'
+
+let apiRoot = 'http://111.230.31.38:8080'
 
 export default {
-
   getUser: function () {
     let user
     try {
@@ -13,18 +15,16 @@ export default {
     }
     return user
   },
-
-  // authentication status
   isAuthenticated: function () {
-    return window.localStorage.getItem('user') != null
+    // return window.localStorage.getItem('user') != null
+    return true
   },
-
-  // Send a request to the login URL and save the returned JWT
   login (context, creds, redirect) {
-    return context.$http.post('/api/admin/login', creds).then((data) => {
-      let user
-      if (data.body) {
-        user = data.body
+    return axios.post(apiRoot + '/restaurant/session', creds).then((res) => {
+      let user = {}
+      if (res.status === 200) {
+        user.data = res.data
+        user.status = 200
       } else {
         return {
           data: null,
@@ -32,26 +32,13 @@ export default {
           status: 0
         }
       }
-
-      if (!user.status) {
-        return {
-          data: null,
-          msg: user.msg,
-          status: user.status
-        }
-      }
-
       window.localStorage.setItem('user', JSON.stringify(user.data))
-
       context.$root.user = user.data
-
       return user
     })
   },
-
-    // To log out
   logout: function (context) {
-    context.$http.get('/api/admin/logout').then((data) => {
+    axios.delete(apiRoot + '/restaurant/session').then((res) => {
       window.localStorage.removeItem('user')
       router.go('/login')
     })
