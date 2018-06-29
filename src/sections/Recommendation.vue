@@ -6,24 +6,29 @@
     h2 新增推荐
     form.form-horizontal.new_recommendation
       .form-group
-        label.col-sm-1.control-label(for='inputEmail3') 标题
+        label.col-sm-1.control-label 标题
         .col-sm-2
           input.form-control(type='text', placeholder='Title', v-model='title')
-        label.col-sm-1.control-label(for='inputPassword3') 标签
+        label.col-sm-1.control-label 标签
         .col-sm-2
           input.form-control(type='text', placeholder='Tag', v-model='tag')
-        label.col-sm-1.control-label(for='inputPassword3') 大图
+        label.col-sm-1.control-label 大图
         .col-sm-5
           input.form-control(type='text', placeholder='url', v-model='imageUrl')
       .form-group
-        label.col-sm-1.control-label(for='inputEmail3') 描述
+        label.col-sm-1.control-label 描述1
         .col-sm-8
-          input.form-control(type='text', placeholder='description', v-model='description')
-        label.col-sm-1.control-label(for='inputPassword3') 菜品ID
+          input.form-control(type='text', placeholder='description', v-model='description1')
+        label.col-sm-1.control-label 菜品ID1
         .col-sm-2
-          input.form-control(type='text', placeholder='dishId', v-model='dishId')
-
+          input.form-control(type='text', placeholder='dishId', v-model='dishId1')
       .form-group
+        label.col-sm-1.control-label 描述2
+        .col-sm-8
+          input.form-control(type='text', placeholder='description', v-model='description2')
+        label.col-sm-1.control-label 菜品ID2
+        .col-sm-2
+          input.form-control(type='text', placeholder='dishId', v-model='dishId2')
         
 
     .recoommendation_list

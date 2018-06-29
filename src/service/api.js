@@ -1,7 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-// let apiRoot = 'http://111.230.31.38:8080/'
-let apiRoot = 'http://localhost:3000/'
 
 export default {
   getMenu: function () {
@@ -26,12 +24,7 @@ export default {
     })
   },
   deleteDish: function (dishID) {
-    console.log(dishID)
-    axios.delete(apiRoot + 'restaurant/dish/' + dishID, {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
+    axios.delete('/api/restaurant/dish/' + dishID)
     .then(function (response) {
       console.log(response)
     })
@@ -40,17 +33,9 @@ export default {
     })
   },
   getOrder: function (pageSize, pageNum) {
-    return axios.get(apiRoot + 'restaurant/order?pageSize=5&pageNumber=2', {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
+    return axios.get('/api/restaurant/order?pageSize=5&pageNumber=2')
   },
   getRecommendation: function () {
-    return axios.get('https://easy-mock.com/mock/5afbe65c3e9a2302b68981e5/recommendation', {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
+    return axios.get('/api/restaurant/recommendation')
   }
 }
