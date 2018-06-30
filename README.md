@@ -2,7 +2,7 @@
 
 Management System for Tiny Hippo
 
-## Build Setup
+## 配置
 
 ``` bash
 # install dependencies
@@ -23,6 +23,10 @@ npm run e2e
 # run all tests
 npm test
 ```
+
+## 部署
+
+参见 [后台部署文档-放置静态页面](https://github.com/rookies-sysu/Order-System-Backend/blob/master/README.md#22-%E6%94%BE%E7%BD%AE-vue-build-%E5%87%BA%E6%9D%A5%E7%9A%84%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2)
 
 ## 分支说明
 
