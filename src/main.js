@@ -4,6 +4,7 @@ import VueHighcharts from 'vue-highcharts'
 import App from './App'
 import router from './router'
 import './assets/iconfont/iconfont.css'
+import 'babel-polyfill'
 // Start up app
 Vue.use(Resource)
 Vue.use(VueHighcharts)
