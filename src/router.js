@@ -56,7 +56,7 @@ router.beforeEach(function (transition) {
 })
 
 router.redirect({
-  '*': '/dashboard'
+  '*': '/login'
 })
 
 export default router
